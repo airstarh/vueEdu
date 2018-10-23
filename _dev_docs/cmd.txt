@@ -1,0 +1,6 @@
+H:
+cd H:\_REPO\vueEdu\alinapoint
+npm run serve
+
+--- To create a production build, run
+npm run build.
