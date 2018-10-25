@@ -3,4 +3,8 @@ cd H:\_REPO\vueEdu\alinapoint
 npm run serve
 
 --- To create a production build, run
-npm run build.
+npm run build
+
+--- Component Generator
+https://www.npmjs.com/package/vue-generate-component
+vgc eg-query --folder

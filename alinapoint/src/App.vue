@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Alina Point"/>
-  </div>
+	<div id="app">
+		<img alt="Vue logo" src="./assets/logo.png">
+
+		<div>
+			<h1>AnObject</h1>
+			<div>{{this.o.prop1}}</div>
+			<div>{{this.o.prop2}}</div>
+			<div>{{this.o.concatAnObjectProps()}}</div>
+		</div>
+
+		<HelloWorld
+				msg="Alina Point"
+				:o=this.o
+		/>
+
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+	import HelloWorld from './components/HelloWorld.vue'
+	import AnObject   from "./services/AnObject";
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+	export default {
+		name: 'app',
+        data: function(){
+			return {
+				o: new AnObject()
+			}
+        },
+		components: {
+			HelloWorld
+		}
+	}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	#app {
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-align: center;
+		color: #2c3e50;
+		margin-top: 60px;
+	}
 </style>
