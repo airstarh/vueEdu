@@ -1,3 +1,20 @@
+<script>
+	import HelloWorld from './components/HelloWorld.vue'
+	import NewAnObject   from "./services/AnObject";
+
+	export default {
+		name: 'app',
+		data: function(){
+			return {
+				o: NewAnObject
+			}
+		},
+		components: {
+			HelloWorld
+		}
+	}
+</script>
+
 <template>
 	<div id="app">
 		<img alt="Vue logo" src="./assets/logo.png">
@@ -16,23 +33,6 @@
 
 	</div>
 </template>
-
-<script>
-	import HelloWorld from './components/HelloWorld.vue'
-	import AnObject   from "./services/AnObject";
-
-	export default {
-		name: 'app',
-        data: function(){
-			return {
-				o: new AnObject()
-			}
-        },
-		components: {
-			HelloWorld
-		}
-	}
-</script>
 
 <style>
 	#app {
