@@ -4,12 +4,13 @@
 
 		<div>
 			<h1>AnObject</h1>
+			<div>{{ AnObject.prop1 }}</div>
+			<div>{{ AnObject.prop2 }}</div>
 			<div>{{ AnObject.concatAnObjectProps()}}</div>
 		</div>
 
 		<HelloWorld
 				:hwMessage="msg"
-				:AnObject="AnObject"
 		/>
 
 	</div>
@@ -23,7 +24,7 @@
 
 	export default {
 		name:       'app',
-		data:       function () {
+		data() {
 			return {
 				msg:      'Hello Alina',
 				AnObject: AnObject

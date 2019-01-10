@@ -17,13 +17,19 @@
 
 <script>
 
+	import AnObject from "../services/AnObject";
+
 	export default {
-		name:       'HelloWorld',
-		props:      {
+		name:  'HelloWorld',
+		props: {
 			hwMessage: String,
-			AnObject:  Object
 		},
-		components: {}
+		data() {
+			return {
+				AnObject: AnObject
+			};
+
+		}
 	}
 </script>
 
