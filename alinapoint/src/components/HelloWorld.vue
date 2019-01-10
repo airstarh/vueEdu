@@ -1,14 +1,16 @@
 <template>
 	<div class="hello">
-		<h1>{{ msg }}</h1>
+		<h1>Message: {{ hwMessage }}</h1>
+
 		<div>
-			<input type="text" v-model="msg">
+			<label>o.prop1:
+				<input type="text" v-model="AnObject.prop1">
+			</label>
 		</div>
-
-		<div>|||</div>
-
 		<div>
-			<input type="text" v-model="o.prop1">
+			<label>o.prop2:
+				<input type="text" v-model="AnObject.prop2">
+			</label>
 		</div>
 	</div>
 </template>
@@ -18,8 +20,8 @@
 	export default {
 		name:       'HelloWorld',
 		props:      {
-			msg: String,
-			o:   Object
+			hwMessage: String,
+			AnObject:  Object
 		},
 		components: {}
 	}

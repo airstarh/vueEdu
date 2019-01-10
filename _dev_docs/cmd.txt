@@ -8,3 +8,12 @@ npm run build
 --- Component Generator
 https://www.npmjs.com/package/vue-generate-component
 vgc eg-query --folder
+
+---
+Upgrade Node
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+npm install -g npm-windows-upgrade
+npm-windows-upgrade
+https://stackoverflow.com/a/31520672/3142281
+
+---
