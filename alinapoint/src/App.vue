@@ -8,6 +8,10 @@
 			<router-link to="/foo">Go to Foo</router-link>
 			&nbsp;
 			<router-link to="/bar">Go to Bar</router-link>
+			&nbsp;
+			<router-link to="/foobar">Go to FooBar</router-link>
+			&nbsp;
+			<router-link to="/rawcomponent">Go to RawComponent</router-link>
 		</p>
 		<!-- route outlet -->
 		<!-- component matched by the route will render here -->
