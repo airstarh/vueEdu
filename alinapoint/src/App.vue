@@ -1,18 +1,29 @@
 <template>
-	<div id="app">
-		<img alt="Vue logo" src="./assets/logo.png">
+	<div id="sapp">
+		<h1>Hello Router!</h1>
+		<p>
+			<!-- use router-link component for navigation. -->
+			<!-- specify the link by passing the `to` prop. -->
+			<!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+			<router-link to="/foo">Go to Foo</router-link>
+			&nbsp;
+			<router-link to="/bar">Go to Bar</router-link>
+		</p>
+		<!-- route outlet -->
+		<!-- component matched by the route will render here -->
+		<router-view></router-view>
+
 
 		<div>
 			<h1>AnObject</h1>
 			<div>{{ AnObject.prop1 }}</div>
 			<div>{{ AnObject.prop2 }}</div>
 			<div>{{ AnObject.concatAnObjectProps()}}</div>
+
+			<HelloWorld
+					:hwMessage="msg"
+			/>
 		</div>
-
-		<HelloWorld
-				:hwMessage="msg"
-		/>
-
 	</div>
 </template>
 /////////////////////////////////
@@ -39,7 +50,7 @@
 /////////////////////////////////
 /////////////////////////////////
 <style>
-	#app {
+	#sapp {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
