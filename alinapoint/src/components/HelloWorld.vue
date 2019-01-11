@@ -1,7 +1,6 @@
 <template>
 	<div class="hello">
 		<h1>Message: {{ hwMessage }}</h1>
-
 		<div>
 			<label>o.prop1:
 				<input type="text" v-model="AnObject.prop1">

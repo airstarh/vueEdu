@@ -1,5 +1,6 @@
 H:
 cd H:\_REPO\vueEdu\alinapoint
+npm run serve -p 8081
 npm run serve
 
 --- To create a production build, run
