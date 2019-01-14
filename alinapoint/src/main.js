@@ -13,25 +13,19 @@ Vue.use(VueRouter);
 
 // 1. Define route components.
 // These can be imported from other files
-const RawComponent = {template: '<div>RawComponent</div>'};
-
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// `Vue.extend()`, or just a component options object.
-// We'll talk about nested routes later.
-const routes = [
-	{path: '/foobar', component: FooBar},
-	{path: '/foo', component: Foo},
-	{path: '/bar', component: Bar},
-	{path: '/rawcomponent', component: RawComponent}
-];
+const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-	routes // short for `routes: routes`
+	routes: [
+		{path: '/foobar', component: FooBar},
+		{path: '/foo', component: Foo},
+		{path: '/bar', component: Bar},
+		{path: '/rawcomponent/:someString', component: RawComponent},
+		{path: '/rawcomponent/*', component: RawComponent}
+	] // short for `routes: routes`
 });
 
 // 4. Create and mount the root instance.

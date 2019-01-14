@@ -33,7 +33,11 @@ export class Ajax {
 			redirect:    this.redirect,
 			referrer:    this.referrer,
 		})
-			.then(response => response.json()) // parses response to JSON
+			.then(response => {
+				console.log("Ajax. GET. Raw Response ++++++++++");
+				console.log(response);
+				return response
+			}) // parses response to JSON
 			.catch(error => console.error('Error:', error));
 
 	};
@@ -49,7 +53,11 @@ export class Ajax {
 			referrer:    this.referrer,
 			body:        JSON.stringify(this.postParams)
 		})
-			.then(response => response.json()) // parses response to JSON
+			.then(response => {
+				console.log("Ajax. POST. Raw Response ++++++++++");
+				console.log(response);
+				return response
+			}) // parses response to JSON
 			.catch(error => console.error('Error:', error));
 	};
 
