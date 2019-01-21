@@ -1,27 +1,19 @@
 import {Ajax} from "../../../services/ajax";
 
-export class GeneralModel {
-	options            = {};
-	baseUrl            = 'http://alinazero/alinaRestAccept';
+export class GeneralModel extends Ajax {
+	url                = 'http://alinazero/alinaRestAccept';
 	attributes         = {};
 	tableName          = '';
 	lastJsonedResponse = {};
-	getParams          = {};
-	headers            = {};
-	postParams         = {};
 
 	constructor(attributes = {}, options = {}) {
+		super(options);
+		console.log("this.options ++++++++++");
+		console.log(this.options);
 		this.attributes = attributes;
-		this.options    = options;
-		this.options.baseUrl && (this.baseUrl = this.options.baseUrl);
 		this.options.tableName && (this.tableName = this.options.tableName);
-		this.getParams = {
-			cmd: 'modelOne',
-			m:   this.tableName,
-		};
-		options.getParams && Object.assign(this.getParams, options.getParams);
-		options.postParams && Object.assign(this.postParams, options.postParams);
-		options.headers && Object.assign(this.headers, options.headers);
+		this.getParams.cmd = 'modelOne';
+		this.getParams.m   = this.tableName;
 	};
 
 	//region Helpers
@@ -29,29 +21,17 @@ export class GeneralModel {
 
 	//region Ajax
 	ajaxGet() {
-		return new Ajax({
-			url:       this.baseUrl,
-			getParams: this.getParams,
-			headers:   this.headers,
-		})
-			.get()
+		return super
+			.ajaxGet()
 			.then(r => {
 				return r.json();
 			})
-			.then(r=>{
+			.then(r => {
 				this.lastJsonedResponse = r;
-				this.attributes = this.lastJsonedResponse.data;
+				this.attributes         = this.lastJsonedResponse.data;
 				return r;
 			})
-			;
 	};
-
-	ajaxPost() {};
-
-	ajaxPut() {};
-
-	ajaxDelete() {};
-
 	//endregion Ajax
 }
 

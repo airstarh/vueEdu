@@ -1,4 +1,5 @@
 export class Ajax {
+	options     = {};
 	//url         = 'http://alinazero/alinaRestAccept?cmd=model&m=user&ps=2&p=1';
 	url         = 'http://alinazero/alinaRestAccept';
 	headers     = {
@@ -13,18 +14,16 @@ export class Ajax {
 	redirect    = "follow"; // manual, *follow, error
 	referrer    = "no-referrer"; // no-referrer, *client
 
-	constructor(options) {
-		options.url && (this.url = options.url);
-		options.headers && Object.assign(this.headers, options.headers);
-		options.getParams && Object.assign(this.getParams, options.getParams);
-		options.postParams && Object.assign(this.postParams, options.postParams);
-
-		this.url = new URL(this.url);
-		Object.keys(this.getParams).forEach(key => this.url.searchParams.append(key, this.getParams[key]))
+	constructor(options = {}) {
+		this.options = options;
+		this.options.url && (this.url = this.options.url);
+		this.options.headers && Object.assign(this.headers, this.options.headers);
+		this.options.getParams && Object.assign(this.getParams, this.options.getParams);
+		this.options.postParams && Object.assign(this.postParams, this.options.postParams);
 	}
 
-	get() {
-		return fetch(this.url, {
+	ajaxGet() {
+		return fetch(this.urlBuild(), {
 			method:      "GET", // *GET, POST, PUT, DELETE, etc.
 			mode:        this.mode,
 			cache:       this.cache,
@@ -42,8 +41,8 @@ export class Ajax {
 
 	};
 
-	post() {
-		return fetch(this.url, {
+	ajaxPost() {
+		return fetch(this.urlBuild(), {
 			method:      "POST", // *GET, POST, PUT, DELETE, etc.
 			mode:        this.mode,
 			cache:       this.cache,
@@ -61,9 +60,35 @@ export class Ajax {
 			.catch(error => console.error('Error:', error));
 	};
 
-	put() {
+	ajaxPut() {
+		return fetch(this.urlBuild(), {
+			method:      "PUT", // *GET, POST, PUT, DELETE, etc.
+			mode:        this.mode,
+			cache:       this.cache,
+			credentials: this.credentials,
+			headers:     this.headers,
+			redirect:    this.redirect,
+			referrer:    this.referrer,
+			body:        JSON.stringify(this.postParams)
+		})
+			.then(response => {
+				console.log("Ajax. POST. Raw Response ++++++++++");
+				console.log(response);
+				return response
+			}) // parses response to JSON
+			.catch(error => console.error('Error:', error));
+
 	};
 
-	delete() {
+	ajaxDelete() {
 	};
+
+	//region Data Processing
+	urlBuild() {
+		this.url = new URL(this.url);
+		Object.keys(this.getParams).forEach(key => this.url.searchParams.append(key, this.getParams[key]));
+		return this.url;
+	}
+
+	//endregion Data Processing
 }

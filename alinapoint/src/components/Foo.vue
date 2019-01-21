@@ -1,9 +1,9 @@
 <template>
 	<div class="hello">
 		<h1>Foo</h1>
-		<pre>
-			{{ modelString }}
-		</pre>
+		<div v-for="(value, key) in model.attributes">
+			{{ key }}: {{ value }}
+		</div>
 	</div>
 </template>
 
@@ -20,7 +20,7 @@
 		created() {
 			this.model = new GeneralModel({}, {
 					tableName: 'user',
-					getParams: {mId:1}
+					getParams: {mId:3}
 				}
 			);
 			this.model
@@ -30,6 +30,8 @@
 					return r
 				})
 			;
+		},
+		methods: {
 
 		}
 	}
