@@ -3,17 +3,16 @@ import UtilsArray from "../../../Utils/UtilsArray";
 
 export class GeneralModel extends Ajax {
 	url                = 'http://alinazero/alinaRestAccept';
-	tableName          = '';
+	tableName          = 'XXX';
 	attributes         = {};
 	lastJsonedResponse = {};
 	arrFieldsOrder     = [];
 
 	constructor(attributes = {}, options = {}) {
 		super(options);
-		this.attributes = attributes;
+		this.setAttributes(attributes);
 		this.options.tableName && (this.tableName = this.options.tableName);
-		this.getParams.cmd = 'modelOne';
-		this.getParams.m   = this.tableName;
+		this.getParams.m = this.tableName;
 	};
 
 	//region Ajax
@@ -24,24 +23,31 @@ export class GeneralModel extends Ajax {
 				return r.json();
 			})
 			.then(r => {
-				this.lastJsonedResponse = r;
-				this.setAttributes(this.lastJsonedResponse.data);
-				return r;
+				return this.ajaxGetAfterSuccess(r);
 			})
 	};
 
 	//endregion Ajax
 
 	//region Helpers
+	ajaxGetAfterSuccess(aPromise) {
+		this.lastJsonedResponse = aPromise;
+		this.setAttributes(this.lastJsonedResponse.data);
+		if (this.hookAjaxGetAfterSuccess) {
+			return this.hookAjaxGetAfterSuccess(aPromise);
+		}
+		return aPromise;
+	}
+
 	setAttributes(attributes = {}) {
 		this.attributes = attributes;
-		this.arrFieldsOrderSet();
+		this.arrFieldsOrderSet(this.attributes);
 		return this;
 	}
 
 	//region arrFieldsOrder Manipulations
-	arrFieldsOrderSet() {
-		this.arrFieldsOrder = Object.keys(this.attributes);
+	arrFieldsOrderSet(o = {}) {
+		this.arrFieldsOrder = Object.keys(o);
 		return this;
 	}
 
@@ -54,11 +60,42 @@ export class GeneralModel extends Ajax {
 		new UtilsArray(this.arrFieldsOrder).elSetLater(i);
 		return this;
 	}
+
 	//endregion arrFieldsOrder Manipulations
 
 	//endregion Helpers
 }
 
-export class GeneralCollection {
+export class GeneralCollection extends GeneralModel {
 
+	models     = [];
+	mClassName = GeneralModel;
+
+	constructor(models = [], options = {}) {
+		super({}, options);
+		this.models = this.setModels(models);
+	};
+
+	//region Ajax
+	ajaxGetAfterSuccess(aPromise) {
+		this.lastJsonedResponse = aPromise;
+		this.setModels(this.lastJsonedResponse.data);
+		if (this.hookAjaxGetAfterSuccess) {
+			return this.hookAjaxGetAfterSuccess(aPromise);
+		}
+		return aPromise;
+	}
+
+	setModels(models = []) {
+		this.models = [];
+		this.arrFieldsOrderSet(models[0] || []);
+		models.forEach((e, i, arr) => {
+			const m          = new this.mClassName(e);
+			m.arrFieldsOrder = this.arrFieldsOrder;
+			this.models[i]   = m;
+		});
+		return this;
+	}
+
+	//endregion Ajax
 }

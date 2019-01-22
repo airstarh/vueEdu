@@ -1,0 +1,19 @@
+table.data-table {
+    border: #000 solid 1px;
+    border-collapse: collapse;
+}
+
+table.data-table tr td {
+    border: #000 solid 1px;
+    padding: 3px;
+    vertical-align: top;
+
+}
+
+table.data-table tr {
+    height: 150px;
+}
+
+table.data-table tr.odd {
+    background-color: #ebebeb;
+}

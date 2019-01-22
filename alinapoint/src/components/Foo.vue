@@ -2,11 +2,8 @@
 	<div class="hello">
 		<h1>Foo</h1>
 		<button @click="log()">LOG</button>
-		<table class="model-table">
-			<tr
-					v-for="(fName, i) in model.arrFieldsOrder"
-					v-bind:key="i"
-			>
+		<table class="data-table">
+			<tr v-for="(fName, i) in model.arrFieldsOrder">
 				<td>
 					<button @click="model.arrFieldsOrderSetEarlier(i)"><</button>
 					{{ i }}
@@ -25,43 +22,39 @@
 	export default {
 		data() {
 			return {
-				model:       {
-					//arrFieldsOrder: [],
-				},
-				modelString: 'NO DATA'
+				model: {},
 			}
 		},
+
 		created() {
-			this.model = new GeneralModel({}, {
-					tableName: 'user',
-					getParams: {mId: 3}
-				}
-			);
-			this.model
-			    .ajaxGet()
-			    .then(r => {
-				    return r
-			    })
-			;
+			this.getModel();
 		},
 		methods: {
-			log(){
+			log() {
 				console.log("Foo LOG ++++++++++");
 				console.log(this.model.arrFieldsOrder);
 			},
+
+			getModel() {
+				this.model = new GeneralModel({}, {
+						tableName: 'user',
+						getParams: {
+							cmd: 'modelOne',
+							mId: 3,
+						}
+					}
+				);
+				this.model
+				    .ajaxGet()
+				    .then(r => {
+					    return r
+				    })
+				;
+			}
 		}
 	}
 </script>
 
-<style>
-	table.model-table {
-		border: #000 solid 1px;
-		border-collapse: collapse;
-	}
+<style scoped>
 
-	table.model-table tr td {
-		border: #000 solid 1px;
-		padding: 3px;
-		vertical-align: top;
-	}
 </style>

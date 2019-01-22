@@ -47,7 +47,7 @@ export default class UtilsArray {
 	}
 
 	isLast(i) {
-		return this.refArr.length === i;
+		return this.refArr.length-1 === i;
 	}
 
 	//endregion Helpers
