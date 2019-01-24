@@ -85,9 +85,9 @@ export class Ajax {
 
 	//region Data Processing
 	urlBuild() {
-		this.url = new URL(this.url);
-		Object.keys(this.getParams).forEach(key => this.url.searchParams.append(key, this.getParams[key]));
-		return this.url;
+		const url = new URL(this.url);
+		Object.keys(this.getParams).forEach(key => url.searchParams.append(key, this.getParams[key]));
+		return url;
 	}
 
 	//endregion Data Processing

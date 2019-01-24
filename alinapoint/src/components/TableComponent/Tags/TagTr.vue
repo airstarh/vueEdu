@@ -6,8 +6,9 @@
 	    ]"
 	>
 		<td>
-			<button>LOG</button><br/>
-			<button>Save</button><br/>
+			<button @click="log()">LOG</button><br/>
+			<button @click="update()">Update</button><br/>
+			<button>Insert</button><br/>
 			<button>Edit</button><br/>
 			<button>Del</button><br/>
 
@@ -33,6 +34,15 @@
 			refModel:   GeneralModel,
 			indexModel: Number,
 			refArrFieldsOrder: Array,
+		},
+		methods:{
+			log(){
+				console.log("TagTr refModel ++++++++++");
+				console.log(this.refModel);
+			},
+			update(){
+				this.refModel.ajaxPut();
+			}
 		},
 		components: {
 			TagTable,

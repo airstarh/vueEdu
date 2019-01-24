@@ -24,9 +24,5 @@
 			TagTr,
 			TagTrTh,
 		},
-		updated(){
-			console.log("TagTd  updated++++++++++");
-			console.log(this.refModel.arrFieldsOrder);
-		}
 	}
 </script>

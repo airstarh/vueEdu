@@ -16,6 +16,7 @@ export class GeneralModel extends Ajax {
 		super(options);
 		this.setAttributes(attributes);
 		this.options.tableName && (this.tableName = this.options.tableName);
+		this.getParams.cmd = 'model';
 		this.getParams.m = this.tableName;
 	};
 
@@ -30,6 +31,19 @@ export class GeneralModel extends Ajax {
 				return this.ajaxGetAfterSuccess(r);
 			})
 	};
+
+	ajaxPut() {
+		this.postParams = this.attributes;
+		return super
+			.ajaxPut()
+			.then(r => {
+				return r.json();
+			})
+			.then(r => {
+				return this.ajaxGetAfterSuccess(r);
+			})
+	};
+
 
 	//endregion Ajax
 
@@ -82,6 +96,7 @@ export class GeneralCollection extends GeneralModel {
 	constructor(models = [], options = {}) {
 		super({}, options);
 		this.models = this.setModels(models);
+		this.getParams.cmd = 'collection';
 	};
 
 	//region Ajax
@@ -98,8 +113,10 @@ export class GeneralCollection extends GeneralModel {
 		this.models = [];
 		this.arrFieldsOrderSet(models[0] || []);
 		models.forEach((e, i, arr) => {
-			const m        = new this.mClassName(e);
-			m.arrFieldsOrderSet = this.arrFieldsOrderSet;
+			const m        = new this.mClassName(e, {
+				tableName: this.tableName
+			});
+			m.arrFieldsOrder = this.arrFieldsOrder;
 			this.models[i] = m;
 		});
 		return this;
