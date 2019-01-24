@@ -1,10 +1,10 @@
 export default class UtilsData{
 
-	isset(ObjectPropertyOrArrayKey) {
+	static isset(ObjectPropertyOrArrayKey) {
 		return typeof ObjectPropertyOrArrayKey !== "undefined" && ObjectPropertyOrArrayKey !== null;
 	};
 
-	empty(value) {
+	static empty(value) {
 		return value == null
 			|| value == undefined
 			|| value === 0

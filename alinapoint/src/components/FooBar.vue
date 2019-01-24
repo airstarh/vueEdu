@@ -6,7 +6,8 @@
 
 <script>
 
-	import AnObject from "../services/AnObject";
+	import AnObject    from "../services/AnObject";
+	import UtilsObject from "../Utils/UtilsObject";
 
 	export default {
 		name:  'FooBar',
@@ -15,8 +16,25 @@
 		},
 		data() {
 			return {
-				AnObject: AnObject
+				AnObject: AnObject,
+				myVar: null,
 			};
+		},
+
+		created(){
+			const o = {};
+			let p = 'a.b.c';
+			//let v = [1,2,3];
+			let v = 'lalala';
+			UtilsObject.setByPath(o, p, v);
+
+			p = 'a.b.c.d';
+			v = [3,2,1];
+			UtilsObject.setByPath(o, p, v);
+
+			console.log("FooBar test ++++++++++");
+			console.log(o);
+			console.log(UtilsObject.getByPath(o, 'a.b.c'));
 
 		}
 	}

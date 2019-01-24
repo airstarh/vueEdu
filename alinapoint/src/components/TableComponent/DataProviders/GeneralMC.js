@@ -1,5 +1,9 @@
-import {Ajax}     from "../../../services/ajax";
-import UtilsArray from "../../../Utils/UtilsArray";
+import {Ajax}        from "../../../services/ajax";
+import UtilsArray    from "../../../Utils/UtilsArray";
+import UtilsData     from "../../../Utils/UtilsData";
+import StorageStates from "./StorageStates";
+
+//import * as UD       from "../../../Utils/UtilsData";
 
 export class GeneralModel extends Ajax {
 	url                = 'http://alinazero/alinaRestAccept';
@@ -47,7 +51,11 @@ export class GeneralModel extends Ajax {
 
 	//region arrFieldsOrder Manipulations
 	arrFieldsOrderSet(o = {}) {
-		this.arrFieldsOrder = Object.keys(o);
+		const a             = StorageStates.g(this.tableName, 'arrFieldsOrder');
+		this.arrFieldsOrder = (UtilsData.empty(a))
+		                      ? Object.keys(o)
+		                      : a;
+		StorageStates.s(this.tableName, 'arrFieldsOrder', this.arrFieldsOrder);
 		return this;
 	}
 
@@ -90,9 +98,9 @@ export class GeneralCollection extends GeneralModel {
 		this.models = [];
 		this.arrFieldsOrderSet(models[0] || []);
 		models.forEach((e, i, arr) => {
-			const m          = new this.mClassName(e);
-			m.arrFieldsOrder = this.arrFieldsOrder;
-			this.models[i]   = m;
+			const m        = new this.mClassName(e);
+			m.arrFieldsOrderSet = this.arrFieldsOrderSet;
+			this.models[i] = m;
 		});
 		return this;
 	}

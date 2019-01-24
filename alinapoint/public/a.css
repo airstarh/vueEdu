@@ -3,7 +3,9 @@ table.data-table {
     border-collapse: collapse;
 }
 
-table.data-table tr td {
+table.data-table tr td
+, table.data-table tr th
+{
     border: #000 solid 1px;
     padding: 3px;
     vertical-align: top;

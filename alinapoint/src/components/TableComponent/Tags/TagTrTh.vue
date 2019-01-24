@@ -1,6 +1,9 @@
 <template>
-	<tr>
-		<th v-for="(f, i) in refArrCollection.arrFieldsOrder">
+	<tr v-if="refArrFieldsOrder">
+		<th>
+			Actions
+		</th>
+		<th v-for="(f, i) in refArrFieldsOrder">
 			<button @click="refArrCollection.arrFieldsOrderSetEarlier(i)"><</button>
 			{{f}}
 			<button @click="refArrCollection.arrFieldsOrderSetLater(i)">></button>
@@ -18,6 +21,7 @@
 		name:       'TagTrTh',
 		props:      {
 			refArrCollection: GeneralCollection,
+			refArrFieldsOrder: Array,
 		},
 		components: {
 			TagTable,

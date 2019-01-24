@@ -5,8 +5,15 @@
 	    {odd: indexModel%2 ===  0}
 	    ]"
 	>
-		<TagTd v-if="refModel.arrFieldsOrder.length > 0"
-		       v-for="(f, i) in refModel.arrFieldsOrder"
+		<td>
+			<button>LOG</button><br/>
+			<button>Save</button><br/>
+			<button>Edit</button><br/>
+			<button>Del</button><br/>
+
+		</td>
+		<TagTd v-if="refArrFieldsOrder.length > 0"
+		       v-for="(f, i) in refArrFieldsOrder"
 		       :refModel="refModel"
 		       :mFieldName="f"
 		       :mFieldIndex="i"
@@ -25,6 +32,7 @@
 		props:      {
 			refModel:   GeneralModel,
 			indexModel: Number,
+			refArrFieldsOrder: Array,
 		},
 		components: {
 			TagTable,

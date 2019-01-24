@@ -2,11 +2,14 @@
 	<table v-if="refArrCollection.models.length > 0"
 	       class="data-table"
 	>
-		<TagTrTh :refArrCollection="refArrCollection"></TagTrTh>
+		<TagTrTh :refArrCollection="refArrCollection"
+		         :refArrFieldsOrder="refArrCollection.arrFieldsOrder"
+		></TagTrTh>
 
 		<TagTr v-for="(m, i) in refArrCollection.models"
 		       :refModel="m"
 		       :indexModel="i"
+		       :refArrFieldsOrder="refArrCollection.arrFieldsOrder"
 		></TagTr>
 	</table>
 </template>
