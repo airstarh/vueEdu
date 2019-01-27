@@ -18,19 +18,19 @@
 			</div>
 			<div class="get-params">
 				<div class="get-params-each">
-					<input type="text" :placeholder="f">
+					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]" @keyup="refCollection.ajaxGet()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" :placeholder="`eq_${f}`">
+					<input type="text" :placeholder="`eq_${f}`" v-model="refCollection.getParams[`eq_${f}`]" @keyup="refCollection.ajaxGet()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" :placeholder="`lk_${f}`">
+					<input type="text" :placeholder="`lk_${f}`" v-model="refCollection.getParams[`lk_${f}`]" @keyup="refCollection.ajaxGet()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" :placeholder="`gt_${f}`">
+					<input type="text" :placeholder="`gt_${f}`" v-model="refCollection.getParams[`gt_${f}`]" @keyup="refCollection.ajaxGet()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" :placeholder="`lt_${f}`">
+					<input type="text" :placeholder="`lt_${f}`" v-model="refCollection.getParams[`lt_${f}`]" @keyup="refCollection.ajaxGet()">
 				</div>
 			</div>
 		</th>
@@ -57,6 +57,12 @@
 		methods:{
 			onChangeGetParams(fName, fValue){
 
+				console.log("onChangeGetParams ++++++++++");
+				console.log(fName);
+				console.log(fValue);
+
+				// this.refCollection.getParams[fName] = fValue;
+				// this.refCollection.ajaxGet();
 			}
 		}
 	}

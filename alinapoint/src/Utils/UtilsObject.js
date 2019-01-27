@@ -1,3 +1,5 @@
+import UtilsData from "./UtilsData";
+
 export default class UtilsObject {
 
 	//region Get Set by path.
@@ -37,8 +39,8 @@ export default class UtilsObject {
 	};
 
 	static setByPathArray(o, pathArr = [], value) {
-		const len     = pathArr.length - 1;
-		let ref       = o;
+		const len = pathArr.length - 1;
+		let ref   = o;
 		for (let i = 0; i < len; i++) {
 			let prop = pathArr[i];
 			if (prop in ref) {
@@ -53,4 +55,12 @@ export default class UtilsObject {
 	};
 
 	//endregion Get Set by path.
+
+	static eraseEmpty(o) {
+		for (let p in o) {
+			if (UtilsData.empty(o[p])) {
+				delete o[p];
+			}
+		}
+	}
 }

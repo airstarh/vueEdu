@@ -1,5 +1,5 @@
 <template>
-	<table v-if="refCollection.models.length > 0"
+	<table v-if="refCollection.arrFieldsOrder.length > 0"
 	       class="data-table"
 	>
 		<TagTrTh :refCollection="refCollection"

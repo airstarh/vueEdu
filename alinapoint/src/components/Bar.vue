@@ -8,7 +8,8 @@
 
 <script>
 	import {GeneralCollection} from "./TableComponent/DataProviders/GeneralMC";
-	import TagTable from  "./TableComponent/Tags/TagTable.vue"
+	import TagTable            from  "./TableComponent/Tags/TagTable.vue"
+	import StorageStates       from "./TableComponent/DataProviders/StorageStates";
 	export default {
 		data() {
 			return {
@@ -22,8 +23,11 @@
 
 		methods: {
 			log() {
-				console.log("Foo LOG ++++++++++");
+				console.log("Bar LOG ++++++++++");
 				console.log(this.collection);
+
+				console.log("StorageStates ++++++++++");
+				console.log(StorageStates);
 			},
 
 			getCollection() {

@@ -9,7 +9,7 @@ export default class UtilsData{
 			|| value == undefined
 			|| value === 0
 			|| value === ''
-			|| value === '0'
+			|| value === '0' //ToDo: Doubtful.
 			|| JSON.stringify(value) === JSON.stringify({})
 			|| JSON.stringify(value) === JSON.stringify([])
 			;
