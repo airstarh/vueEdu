@@ -28,11 +28,13 @@ export class GeneralModel extends Ajax {
 		//ToDo: Not the best approach.
 		this.getParams.cmd = 'model';
 		this.getParams.m   = this.tableName;
+		StorageStates.g(this.tableName, 'getParams') && Object.assign(this.getParams, StorageStates.g(this.tableName, 'getParams'));
 	};
 
 	//region Ajax
 	ajaxGet() {
 		UtilsObject.eraseEmpty(this.getParams);
+		StorageStates.s(this.tableName, 'getParams', this.getParams);
 		return super
 			.ajaxGet()
 			.then(r => {
