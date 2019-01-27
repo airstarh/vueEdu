@@ -24,8 +24,8 @@
 		created(){
 			const o = {};
 			let p = 'a.b.c';
-			//let v = [1,2,3];
-			let v = 'lalala';
+			let v = [1,2,3];
+			//let v = 'lalala';
 			UtilsObject.setByPath(o, p, v);
 
 			p = 'a.b.c.d';

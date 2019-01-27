@@ -74,12 +74,12 @@ export class GeneralModel extends Ajax {
 	}
 
 	arrFieldsOrderSetEarlier(i) {
-		new UtilsArray(this.arrFieldsOrder).elSetEarlier(i);
+		UtilsArray.elSetEarlier(this.arrFieldsOrder, i);
 		return this;
 	}
 
 	arrFieldsOrderSetLater(i) {
-		new UtilsArray(this.arrFieldsOrder).elSetLater(i);
+		UtilsArray.elSetLater(this.arrFieldsOrder, i);
 		return this;
 	}
 

@@ -1,53 +1,47 @@
 export default class UtilsArray {
-	refArr = [];
-
-	constructor(refArr) {
-		this.refArr = refArr;
-	}
 
 	//region Elements Manipulations
-	elsSwap(i1, i2) {
-		const refArr = this.refArr;
+	static elsSwap(arr, i1, i2) {
 
 		/**Wrong approach. See below. */
-		// let valTemp  = refArr[i2];
-		// refArr[i2]   = refArr[i1];
-		// refArr[i1]   = valTemp;
+		// let valTemp  = arr[i2];
+		// arr[i2]   = arr[i1];
+		// arr[i1]   = valTemp;
 
 		/**
 		 * In order to make framework react on Array changes,
 		 * it is used more complicated way to change order of properties.
 		 * @see https://vuejs.org/v2/guide/list.html#Caveats
 		 */
-		refArr[i1] = refArr.splice(i2, 1, refArr[i1])[0];
-		return this;
+		arr[i1] = arr.splice(i2, 1, arr[i1])[0];
+		return arr;
 	}
 
-	elSetEarlier(i) {
-		if (this.isFirst(i)) {
-			return this;
+	static elSetEarlier(arr, i) {
+		if (UtilsArray.isFirst(i)) {
+			return arr;
 		}
-		this.elsSwap(i, i - 1);
-		return this;
+		UtilsArray.elsSwap(arr, i, i - 1);
+		return arr;
 	}
 
-	elSetLater(i) {
-		if (this.isLast(i)) {
-			return this;
+	static elSetLater(arr, i) {
+		if (UtilsArray.isLast(arr, i)) {
+			return arr;
 		}
-		this.elsSwap(i, i + 1);
-		return this;
+		UtilsArray.elsSwap(arr, i, i + 1);
+		return arr;
 	}
 
 	//endregion Elements Manipulations
 
 	//region Helpers
-	isFirst(i) {
+	static isFirst(arr, i) {
 		return i === 0;
 	}
 
-	isLast(i) {
-		return this.refArr.length-1 === i;
+	static isLast(arr, i) {
+		return arr.length-1 === i;
 	}
 
 	//endregion Helpers
