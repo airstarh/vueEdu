@@ -2,7 +2,7 @@
 	<div class="hello">
 		<h1>Bar</h1>
 		<button @click="log()">LOG</button>
-		<TagTable :refArrCollection="collection"></TagTable>
+		<TagTable :refCollection="collection"></TagTable>
 	</div>
 </template>
 

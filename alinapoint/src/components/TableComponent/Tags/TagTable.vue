@@ -1,15 +1,15 @@
 <template>
-	<table v-if="refArrCollection.models.length > 0"
+	<table v-if="refCollection.models.length > 0"
 	       class="data-table"
 	>
-		<TagTrTh :refArrCollection="refArrCollection"
-		         :refArrFieldsOrder="refArrCollection.arrFieldsOrder"
+		<TagTrTh :refCollection="refCollection"
+		         :refArrFieldsOrder="refCollection.arrFieldsOrder"
 		></TagTrTh>
 
-		<TagTr v-for="(m, i) in refArrCollection.models"
+		<TagTr v-for="(m, i) in refCollection.models"
 		       :refModel="m"
 		       :indexModel="i"
-		       :refArrFieldsOrder="refArrCollection.arrFieldsOrder"
+		       :refArrFieldsOrder="refCollection.arrFieldsOrder"
 		></TagTr>
 	</table>
 </template>
@@ -23,7 +23,7 @@
 	export default {
 		name:       'TagTable',
 		props:      {
-			refArrCollection: GeneralCollection,
+			refCollection: GeneralCollection,
 		},
 		components: {
 			TagTr,

@@ -6,14 +6,14 @@
 		<th v-for="(f, i) in refArrFieldsOrder">
 			<div class="flex-menu">
 				<div class="flex-menu-item">
-					<button @click="refArrCollection.arrFieldsOrderSetEarlier(i)"><</button>
+					<button @click="refCollection.arrFieldsOrderSetEarlier(i)"><</button>
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
 					<button>Sort</button>
 				</div>
 				<div class="flex-menu-item">
-					<button @click="refArrCollection.arrFieldsOrderSetLater(i)">></button>
+					<button @click="refCollection.arrFieldsOrderSetLater(i)">></button>
 				</div>
 			</div>
 			<div class="get-params">
@@ -46,7 +46,7 @@
 	export default {
 		name:       'TagTrTh',
 		props:      {
-			refArrCollection:  GeneralCollection,
+			refCollection:     GeneralCollection,
 			refArrFieldsOrder: Array,
 		},
 		components: {
