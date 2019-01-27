@@ -23,6 +23,7 @@ const router = new VueRouter({
 		{path: '/foobar', component: FooBar},
 		{path: '/foo', component: Foo},
 		{path: '/bar', component: Bar},
+		{path: '/bar/:collectionName', component: Bar},
 		{path: '/rawcomponent/:someString', component: RawComponent},
 		{path: '/rawcomponent/*', component: RawComponent}
 	] // short for `routes: routes`

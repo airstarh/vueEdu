@@ -28,7 +28,7 @@ export class GeneralModel extends Ajax {
 		//ToDo: Not the best approach.
 		this.getParams.cmd = 'model';
 		this.getParams.m   = this.tableName;
-		StorageStates.g(this.tableName, 'getParams') && Object.assign(this.getParams, StorageStates.g(this.tableName, 'getParams'));
+		StorageStates.g(this.tableName, 'getParams') && Object.assign(StorageStates.g(this.tableName, 'getParams'), this.getParams);
 	};
 
 	//region Ajax

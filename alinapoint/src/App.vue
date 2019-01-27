@@ -18,18 +18,18 @@
 		<!-- route outlet -->
 		<!-- component matched by the route will render here -->
 
-			<router-view></router-view>
+		<router-view></router-view>
 
 
 		<!--<div>-->
-			<!--<h1>AnObject</h1>-->
-			<!--<div>{{ AnObject.prop1 }}</div>-->
-			<!--<div>{{ AnObject.prop2 }}</div>-->
-			<!--<div>{{ AnObject.concatAnObjectProps()}}</div>-->
+		<!--<h1>AnObject</h1>-->
+		<!--<div>{{ AnObject.prop1 }}</div>-->
+		<!--<div>{{ AnObject.prop2 }}</div>-->
+		<!--<div>{{ AnObject.concatAnObjectProps()}}</div>-->
 
-			<!--<HelloWorld-->
-					<!--:hwMessage="msg"-->
-			<!--/>-->
+		<!--<HelloWorld-->
+		<!--:hwMessage="msg"-->
+		<!--/>-->
 		<!--</div>-->
 	</div>
 </template>
@@ -51,11 +51,10 @@
 		components: {
 			HelloWorld
 		},
-		watch: {
-			'$route' (to, from) {
-				console.log("from to++++++++++");
-				console.log(from);
-				console.log(to);
+		watch:      {
+			'$route'(to, from) {
+				// console.log("from to++++++++++");
+				// console.log(to);
 			}
 		}
 	}
@@ -64,15 +63,15 @@
 /////////////////////////////////
 /////////////////////////////////
 <style>
-	#sapp {
-		padding: 10mm;
-		border: #000 solid 1px;
-
-		font-family: 'Avenir', Helvetica, Arial, sans-serif;
-		-webkit-font-smoothing: antialiased;
+	#sapp
+	{
+		padding:                 10mm;
+		border:                  #000 solid 1px;
+		font-family:             'Avenir', Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing:  antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-align: left;
-		color: #2c3e50;
-		margin-top: 60px;
+		text-align:              left;
+		color:                   #2c3e50;
+		margin-top:              60px;
 	}
 </style>

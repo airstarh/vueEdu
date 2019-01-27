@@ -20,7 +20,6 @@ table.data-table tr th
   border:         #000 solid 1px;
   padding:        3px;
   vertical-align: top;
-  width: 150px;
 }
 table.data-table tr
 {
@@ -36,6 +35,7 @@ table.data-table tr.odd
   width:  90%;
   margin: 2px auto;
 }
+table.data-table tr td input,
 .get-params-each input
 {
   display: block;

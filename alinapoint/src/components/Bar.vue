@@ -1,6 +1,12 @@
 <template>
 	<div class="hello">
-		<h1>Bar</h1>
+		<h1>Collection viewer</h1>
+		<div class="">
+			<router-link to="/bar/user">user</router-link>
+		</div>
+		<div class="">
+			<router-link to="/bar/article">article</router-link>
+		</div>
 		<button @click="log()">LOG</button>
 		<TagTable :refCollection="collection"></TagTable>
 	</div>
@@ -13,11 +19,16 @@
 	export default {
 		data() {
 			return {
+				collectionTableName: 'user',
 				collection: GeneralCollection,
 			}
 		},
+		components: {
+			TagTable
+		},
 
 		created() {
+			this.processRouterData(this.$route);
 			this.getCollection();
 		},
 
@@ -26,23 +37,35 @@
 				console.log("Bar LOG ++++++++++");
 				console.log(this.collection);
 
-				console.log("StorageStates ++++++++++");
-				console.log(StorageStates);
+				console.log("StorageStates.racks ++++++++++");
+				console.log(StorageStates.racks);
+
+				console.log("xxx ++++++++++");
+				console.log(this.$route.params);
 			},
 
 			getCollection() {
 				this.collection = new GeneralCollection([], {
-						tableName: 'user',
+						tableName: this.collectionTableName,
 						getParams: {
 							cmd: 'collection',
 						}
 					}
 				);
 				this.collection.ajaxGet();
+			},
+			processRouterData(to) {
+				if (to.params.collectionName) {
+					this.collectionTableName = to.params.collectionName;
+				}
 			}
 		},
-		components: {
-			TagTable
-		},
+		watch:      {
+			'$route'(to, from) {
+				this.processRouterData(to);
+				this.getCollection();
+			}
+		}
+
 	}
 </script>

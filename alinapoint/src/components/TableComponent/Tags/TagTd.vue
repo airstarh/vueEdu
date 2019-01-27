@@ -1,6 +1,6 @@
 <template>
 	<td>
-		{{refModel.attributes[mFieldName]}}
+		<div v-html="refModel.attributes[mFieldName]"></div>
 		<br>
 		<input type="text" v-model="refModel.attributes[mFieldName]">
 	</td>
