@@ -1,21 +1,56 @@
-table.data-table {
-    border: #000 solid 1px;
-    border-collapse: collapse;
-}
-
-table.data-table tr td
-, table.data-table tr th
+*
 {
-    border: #000 solid 1px;
-    padding: 3px;
-    vertical-align: top;
-
+  margin:  0;
+  padding: 0;
 }
-
-table.data-table tr {
-    height: 150px;
+div,
+input
+{
+  box-sizing: border-box;
 }
-
-table.data-table tr.odd {
-    background-color: #ebebeb;
+/*region Data Table*/
+table.data-table
+{
+  border:          #000 solid 1px;
+  border-collapse: collapse;
 }
+table.data-table tr td, table.data-table tr th
+{
+  border:         #000 solid 1px;
+  padding:        3px;
+  vertical-align: top;
+}
+table.data-table tr
+{
+  height: 50px;
+}
+table.data-table tr.odd
+{
+  background-color: #ebebeb;
+}
+.get-params .get-params-each
+{
+  border: #000 solid 1px;
+  width:  90%;
+  margin: 2px auto;
+}
+.get-params-each input
+{
+  display: block;
+  width:   100%;
+}
+/*endregion Data Table*/
+
+/*region Flex menu*/
+.flex-menu
+{
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  align-items:     stretch;
+}
+.flex-menu-item
+{
+  text-align: center;
+}
+/*endregion Flex menu*/
