@@ -21,16 +21,16 @@
 			<router-view></router-view>
 
 
-		<div>
-			<h1>AnObject</h1>
-			<div>{{ AnObject.prop1 }}</div>
-			<div>{{ AnObject.prop2 }}</div>
-			<div>{{ AnObject.concatAnObjectProps()}}</div>
+		<!--<div>-->
+			<!--<h1>AnObject</h1>-->
+			<!--<div>{{ AnObject.prop1 }}</div>-->
+			<!--<div>{{ AnObject.prop2 }}</div>-->
+			<!--<div>{{ AnObject.concatAnObjectProps()}}</div>-->
 
-			<HelloWorld
-					:hwMessage="msg"
-			/>
-		</div>
+			<!--<HelloWorld-->
+					<!--:hwMessage="msg"-->
+			<!--/>-->
+		<!--</div>-->
 	</div>
 </template>
 /////////////////////////////////
