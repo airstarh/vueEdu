@@ -33,7 +33,8 @@ export class Ajax {
 			referrer:    this.referrer,
 		})
 			.then(response => {
-				console.log("Ajax. GET. Raw Response ++++++++++");
+				console.log(" ");
+				console.log(">>>>>>>>> Ajax. GET. Raw Response");
 				console.log(response);
 				return response
 			}) // parses response to JSON
@@ -53,7 +54,8 @@ export class Ajax {
 			body:        JSON.stringify(this.postParams)
 		})
 			.then(response => {
-				console.log("Ajax. POST. Raw Response ++++++++++");
+				console.log(" ");
+				console.log(">>>>>>>>> Ajax. POST. Raw Response");
 				console.log(response);
 				return response
 			}) // parses response to JSON
@@ -72,7 +74,8 @@ export class Ajax {
 			body:        JSON.stringify(this.postParams)
 		})
 			.then(response => {
-				console.log("Ajax. POST. Raw Response ++++++++++");
+				console.log(" ");
+				console.log(">>>>>>>>> Ajax. PUT. Raw Response");
 				console.log(response);
 				return response
 			}) // parses response to JSON

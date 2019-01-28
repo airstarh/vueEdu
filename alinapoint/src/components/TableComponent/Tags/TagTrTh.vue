@@ -54,16 +54,6 @@
 			TagTh,
 			TagTd,
 		},
-		methods:{
-			onChangeGetParams(fName, fValue){
-
-				console.log("onChangeGetParams ++++++++++");
-				console.log(fName);
-				console.log(fValue);
-
-				// this.refCollection.getParams[fName] = fValue;
-				// this.refCollection.ajaxGet();
-			}
-		}
+		methods:{}
 	}
 </script>

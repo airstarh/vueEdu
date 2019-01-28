@@ -58,7 +58,7 @@ export default class UtilsObject {
 
 	static eraseEmpty(o) {
 		for (let p in o) {
-			if (UtilsData.empty(o[p])) {
+			if (o[p] === '' || o[p] === null) {
 				delete o[p];
 			}
 		}
