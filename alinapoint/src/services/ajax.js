@@ -87,10 +87,13 @@ export class Ajax {
 	};
 
 	//region Data Processing
+	/**
+	 * @return String
+	 */
 	urlBuild() {
 		const url = new URL(this.url);
 		Object.keys(this.getParams).forEach(key => url.searchParams.append(key, this.getParams[key]));
-		return url;
+		return url.toString();
 	}
 
 	//endregion Data Processing
