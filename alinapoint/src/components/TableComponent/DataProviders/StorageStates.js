@@ -20,6 +20,10 @@ const StorageStates = {
 		return curVal;
 	},
 
+	gOrEmptyObject(modelName, path = ''){
+		return this.g(modelName, path) || {};
+	},
+
 	log() {
 		console.log("StorageStates racks ++++++++++");
 		console.log(this.racks);

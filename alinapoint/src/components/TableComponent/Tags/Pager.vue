@@ -1,19 +1,21 @@
 <template>
-	<div v-if="refArrFieldsOrder">
+	<div v-if="refCollection.arrFieldsOrder.length > 0">
 		<span>
-			<select v-model="pageSize">
-                <option v-for="(label, i) in pageSizeVariants" v-bind:value="i">
+			<select v-model="refCollection.pageSize" @change="onChangePageSize($event)">
+                <option v-for="(label, i) in pageSizeVariants" v-bind:value="label">
 	                {{ label }}
                 </option>
 			</select>
 		</span>
-		<button v-for="(label, i) in pagesTotalArray"
-		        @click="gotoPageNumber(i)"
-		        :class="[
-	                {active: i ===  inPageCurrentNumber}
-                ]"
-		>{{label}}
-		</button>
+		<span>
+			<button v-for="(label) in pagesTotalArray"
+			        @click="gotoPageNumber(label)"
+			        :class="[
+		                {active: label == refCollection.pageCurrentNumber}
+	                ]"
+			>{{label}}
+			</button>
+		</span>
 	</div>
 </template>
 
@@ -21,12 +23,10 @@
 	import {GeneralCollection} from "../DataProviders/GeneralMC";
 
 	export default {
-		name:       'Pager',
-		props:      {
-			refCollection:       GeneralCollection,
-			inPageCurrentNumber: Number,
-			inPageSize:          Number,
-			inRowsTotal:         Number,
+		name:    'Pager',
+		props:   {
+			refCollection: GeneralCollection,
+			flagSignal: Boolean,
 		},
 		data() {
 			return {
@@ -39,18 +39,20 @@
 					100,
 					1000,
 				],
-				pageSize:         2,
 				pagesTotal:       0,
 				pagesTotalArray:  [],
-				rowsTotal:        0,
 
 			}
 		},
-		components: {},
 		created() {
-
+			//this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
 		},
-		methods:    {
+		watch:   {
+			flagSignal() {
+				this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
+			}
+		},
+		methods: {
 			calcPagesTotal(rt, ps) {
 				/**
 				 * Base calculation.
@@ -62,23 +64,24 @@
 				}
 				let pagesTotal = Math.ceil(rowsTotal / pageSize);
 
-				/**
-				 * Class specific.
-				 */
-				this.pagesTotal = pagesTotal;
-				this.rowsTotal       = rowsTotal;
-				this.pageSize        = pageSize;
+				// Class specific.
+				this.pagesTotal      = pagesTotal;
 				this.pagesTotalArray = new Array(pagesTotal).fill(0).map(function (v, i) {
 					return i + 1
 				});
+
 				return this;
 			},
 
 			gotoPageNumber(i) {
-				this.refCollection.getParams['p']  = i;
-				this.refCollection.getParams['ps'] = this.pageSize;
+				this.refCollection.pageCurrentNumber = i;
 				this.refCollection.ajaxGet();
-			}
+			},
+
+			onChangePageSize() {
+				this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
+				this.gotoPageNumber(1);
+			},
 		}
 	}
 </script>
@@ -86,6 +89,6 @@
 	button.active
 	{
 		background-color: black;
-		color:white;
+		color:            white;
 	}
 </style>

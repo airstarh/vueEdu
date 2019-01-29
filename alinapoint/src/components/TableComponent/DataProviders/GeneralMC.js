@@ -5,6 +5,7 @@ import StorageStates from "./StorageStates";
 import UtilsObject   from "../../../Utils/UtilsObject";
 
 export class GeneralModel extends Ajax {
+	dataType           = 'model';
 	url                = 'http://alinazero/alinaRestAccept';
 	tableName          = 'XXX';
 	id                 = null;
@@ -13,21 +14,24 @@ export class GeneralModel extends Ajax {
 	lastJsonedResponse = {};
 	arrFieldsOrder     = [];
 
-	constructor(attributes = {}, options = {}) {
-		super(options);
-		//First - Properties
-		this.options.tableName && (this.tableName = this.options.tableName);
-		this.options.pkName && (this.pkName = this.options.pkName);
+	static newInst(attributes = {}, options = {}) {
+		const _this = new this();
+		_this.setOptions(options);
+		_this.setAttributes(attributes);
+		_this.setGetParams({});
 
-		//Second - Functions
-		this.setAttributes(attributes);
+		return _this;
+	}
 
-		//Third - details
+	setGetParams(newObj = {}) {
+		const prevGetParams = StorageStates.gOrEmptyObject(this.curDataKey(), 'getParams');
+		this.getParams      = Object.assign(prevGetParams, this.getParams, newObj);
+
 		//ToDo: Not the best approach.
-		StorageStates.g(this.tableName, 'getParams')
-		&& Object.assign(this.getParams, StorageStates.g(this.tableName, 'getParams'));
-		this.getParams.cmd = 'model';
+		this.getParams.cmd = this.dataType;
 		this.getParams.m   = this.tableName;
+
+		return this;
 	}
 
 	//region Ajax
@@ -36,7 +40,7 @@ export class GeneralModel extends Ajax {
 			this.hookBeforeAjaxGet();
 		}
 		UtilsObject.eraseEmpty(this.getParams);
-		StorageStates.s(this.tableName, 'getParams', this.getParams);
+		StorageStates.s(this.curDataKey(), 'getParams', this.getParams);
 		return super
 			.ajaxGet()
 			.then(r => {
@@ -66,14 +70,14 @@ export class GeneralModel extends Ajax {
 			.then(r => {
 				return this.ajaxGetAfterSuccess(r);
 			})
-	};
+	}
 
 	//endregion Ajax
 
 	//region Helpers
 	setAttributes(attributes = {}) {
 		this.attributes = attributes;
-		this.arrFieldsOrderSet(this.attributes);
+		this.arrFieldsOrderSet(Object.keys(this.attributes));
 		if (attributes[this.pkName]) {
 			this.id = attributes[this.pkName];
 		}
@@ -84,12 +88,20 @@ export class GeneralModel extends Ajax {
 		return UtilsData.empty(this.id);
 	}
 
+	curDataKey() {return `${this.dataType}.${this.tableName}`;}
+
 	//region arrFieldsOrder Manipulations
-	arrFieldsOrderSet(o = {}) {
-		if (UtilsData.empty(o)) {
+	arrFieldsOrderSet(arr = [], force = false) {
+		if (UtilsData.empty(arr)) {
 			return this;
 		}
-		this.arrFieldsOrder = StorageStates.setIfEmpty(this.tableName, 'arrFieldsOrder', Object.keys(o));
+
+		if (force) {
+			this.arrFieldsOrder = StorageStates.s(this.curDataKey(), 'arrFieldsOrder', arr);
+			return this;
+		}
+
+		this.arrFieldsOrder = StorageStates.setIfEmpty(this.curDataKey(), 'arrFieldsOrder', arr);
 		return this;
 	}
 
@@ -109,7 +121,8 @@ export class GeneralModel extends Ajax {
 }
 
 export class GeneralCollection extends GeneralModel {
-
+	dataType   = 'collection';
+	flagSignal = true;
 	models     = [];
 	mClassName = GeneralModel;
 
@@ -120,14 +133,17 @@ export class GeneralCollection extends GeneralModel {
 
 	/**endregion Pager */
 
-	constructor(models = [], options = {}) {
-		super({}, options);
-		this.models        = this.setModels(models);
-		this.getParams.cmd = 'collection';
-	};
+	static newInst(models = [], options = {}) {
+		const _this = new this();
+		_this.setOptions(options);
+		_this.setModels(models);
+		_this.setGetParams({});
+
+		return _this;
+	}
 
 	//region Ajax
-	hookBeforeAjaxGet(){
+	hookBeforeAjaxGet() {
 		this.translatePageParamsToGetParams();
 		return this;
 	}
@@ -140,6 +156,7 @@ export class GeneralCollection extends GeneralModel {
 	}
 
 	ajaxGetAfterSuccess(aPromise) {
+		this.flagSignal         = !this.flagSignal;
 		this.lastJsonedResponse = aPromise;
 		this.setModels(this.lastJsonedResponse.data);
 		this.setPageInfo(this.lastJsonedResponse.meta);
@@ -150,13 +167,15 @@ export class GeneralCollection extends GeneralModel {
 	}
 
 	setModels(models = []) {
-		this.models = [];
-		this.arrFieldsOrderSet(models[0] || []);
-		models.forEach((e, i, arr) => {
-			const m          = new this.mClassName(e, {
-				tableName: this.tableName
-			});
-			m.arrFieldsOrder = this.arrFieldsOrder;
+		this.models     = [];
+		const arrFields = (UtilsData.empty(models[0]))
+		                  ? []
+		                  : Object.keys(models[0]);
+		this.arrFieldsOrderSet(arrFields);
+		models.forEach((e, i) => {
+			const m          = this.mClassName.newInst(e, {tableName: this.tableName});
+			//m.arrFieldsOrder = this.arrFieldsOrder;
+			m.arrFieldsOrderSet(this.arrFieldsOrder, true);
 			this.models[i]   = m;
 		});
 		return this;
@@ -164,12 +183,14 @@ export class GeneralCollection extends GeneralModel {
 
 	setPageInfo(meta) {
 		UtilsData.isset(meta.pageCurrentNumber)
-		&& (this.pageCurrentNumber = meta.pageCurrentNumber);
+		&& (this.pageCurrentNumber = parseInt(meta.pageCurrentNumber));
 		UtilsData.isset(meta.pageSize)
-		&& (this.pageSize = meta.pageSize);
+		&& (this.pageSize = parseInt(meta.pageSize));
 		UtilsData.isset(meta.rowsTotal)
-		&& (this.rowsTotal = meta.rowsTotal);
+		&& (this.rowsTotal = parseInt(meta.rowsTotal));
+
 		return this;
 	}
+
 	//endregion Ajax
 }

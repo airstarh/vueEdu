@@ -14,12 +14,22 @@ export class Ajax {
 	redirect    = "follow"; // manual, *follow, error
 	referrer    = "no-referrer"; // no-referrer, *client
 
-	constructor(options = {}) {
+	constructor() {}
+
+	static newInst(options = {}){
+		const _this = new this();
+		_this.setOptions(options);
+		return _this;
+	}
+
+	setOptions(options = {}){
 		this.options = options;
-		this.options.url && (this.url = this.options.url);
-		this.options.headers && Object.assign(this.headers, this.options.headers);
-		this.options.getParams && Object.assign(this.getParams, this.options.getParams);
-		this.options.postParams && Object.assign(this.postParams, this.options.postParams);
+		for (let p in options) {
+			if (options.hasOwnProperty(p)) {
+				this[p] = options[p];
+			}
+		}
+		return this;
 	}
 
 	ajaxGet() {
@@ -40,7 +50,7 @@ export class Ajax {
 			}) // parses response to JSON
 			.catch(error => console.error('Error:', error));
 
-	};
+	}
 
 	ajaxPost() {
 		return fetch(this.urlBuild(), {
@@ -60,7 +70,7 @@ export class Ajax {
 				return response
 			}) // parses response to JSON
 			.catch(error => console.error('Error:', error));
-	};
+	}
 
 	ajaxPut() {
 		return fetch(this.urlBuild(), {
@@ -81,10 +91,10 @@ export class Ajax {
 			}) // parses response to JSON
 			.catch(error => console.error('Error:', error));
 
-	};
+	}
 
 	ajaxDelete() {
-	};
+	}
 
 	//region Data Processing
 	/**

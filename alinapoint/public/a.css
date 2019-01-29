@@ -5,13 +5,25 @@
 }
 div,
 input[type=text],
-select
+select,
+button
 {
   box-sizing: border-box;
+}
+button
+{
+  padding: 2px;
+}
+input:focus,
+select:focus,
+textarea:focus
+{
+  background-color: aqua;
 }
 /*region Data Table*/
 table.data-table
 {
+  display:         block;
   border:          #000 solid 1px;
   border-collapse: collapse;
 }
@@ -21,6 +33,7 @@ table.data-table tr th
   border:         #000 solid 1px;
   padding:        3px;
   vertical-align: top;
+  min-width:      100px;
 }
 table.data-table tr
 {

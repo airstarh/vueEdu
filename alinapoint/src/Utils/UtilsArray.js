@@ -18,7 +18,7 @@ export default class UtilsArray {
 	}
 
 	static elSetEarlier(arr, i) {
-		if (UtilsArray.isFirst(i)) {
+		if (UtilsArray.isFirst(arr, i)) {
 			return arr;
 		}
 		UtilsArray.elsSwap(arr, i, i - 1);

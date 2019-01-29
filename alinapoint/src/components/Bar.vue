@@ -8,23 +8,30 @@
 			<router-link to="/bar/article">article</router-link>
 		</div>
 		<button @click="log()">LOG</button>
+		<Pager
+				:refCollection="collection"
+				:flagSignal="collection.flagSignal"
+		></Pager>
 		<TagTable :refCollection="collection"></TagTable>
 	</div>
 </template>
 
 <script>
 	import {GeneralCollection} from "./TableComponent/DataProviders/GeneralMC";
-	import TagTable            from  "./TableComponent/Tags/TagTable.vue"
+	import TagTable            from "./TableComponent/Tags/TagTable.vue"
+	import Pager               from "./TableComponent/Tags/Pager.vue"
 	import StorageStates       from "./TableComponent/DataProviders/StorageStates";
+
 	export default {
 		data() {
 			return {
 				collectionTableName: 'user',
-				collection: GeneralCollection,
+				collection:          GeneralCollection,
 			}
 		},
 		components: {
-			TagTable
+			TagTable,
+			Pager,
 		},
 
 		created() {
@@ -34,33 +41,32 @@
 
 		methods: {
 			log() {
+				console.log(" ");
+				console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
 				console.log("Bar LOG ++++++++++");
 				console.log(this.collection);
-
+				console.log(" ");
 				console.log("StorageStates.racks ++++++++++");
 				console.log(StorageStates.racks);
-
-				console.log("xxx ++++++++++");
+				console.log(" ");
+				console.log("this.$route.params ++++++++++");
 				console.log(this.$route.params);
+				console.log("<<<<<<<<<<<<<<<<<<<<<<<<");
+				console.log(" ");
 			},
 
 			getCollection() {
-				this.collection = new GeneralCollection([], {
-						tableName: this.collectionTableName,
-						getParams: {
-							cmd: 'collection',
-						}
-					}
-				);
+				this.collection = GeneralCollection.newInst([], {tableName: this.collectionTableName,});
 				this.collection.ajaxGet();
 			},
+
 			processRouterData(to) {
 				if (to.params.collectionName) {
 					this.collectionTableName = to.params.collectionName;
 				}
 			}
 		},
-		watch:      {
+		watch:   {
 			'$route'(to, from) {
 				this.processRouterData(to);
 				this.getCollection();
