@@ -12,7 +12,13 @@
 				:refCollection="collection"
 				:flagSignal="collection.flagSignal"
 		></Pager>
+		
 		<TagTable :refCollection="collection"></TagTable>
+
+		<Pager
+				:refCollection="collection"
+				:flagSignal="collection.flagSignal"
+		></Pager>
 	</div>
 </template>
 
