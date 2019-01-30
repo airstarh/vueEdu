@@ -13,8 +13,7 @@
 			        :class="[
 		                {active: label == refCollection.pageCurrentNumber}
 	                ]"
-			>{{label}}
-			</button>
+			>{{label}}</button>
 		</span>
 	</div>
 </template>
@@ -26,7 +25,6 @@
 		name:    'Pager',
 		props:   {
 			refCollection: GeneralCollection,
-			flagSignal: Boolean,
 		},
 		data() {
 			return {
@@ -45,12 +43,12 @@
 			}
 		},
 		created() {
-			//this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
+			this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
 		},
 		watch:   {
-			flagSignal() {
+			'refCollection.models.length'() {
 				this.calcPagesTotal(this.refCollection.rowsTotal, this.refCollection.pageSize);
-			}
+			},
 		},
 		methods: {
 			calcPagesTotal(rt, ps) {

@@ -10,7 +10,9 @@
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
-					<button>Sort</button>
+					<button @click="refCollection.setSortProps(f, 0)"
+					        :key="refCollection.flagSignal"
+					>{{refCollection.isSortedBy(f)}}</button>
 				</div>
 				<div class="flex-menu-item">
 					<button @click="refCollection.arrFieldsOrderSetLater(i)">></button>

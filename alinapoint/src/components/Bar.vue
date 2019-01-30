@@ -10,15 +10,18 @@
 		<button @click="log()">LOG</button>
 		<Pager
 				:refCollection="collection"
-				:flagSignal="collection.flagSignal"
 		></Pager>
 
 		<TagTable :refCollection="collection"></TagTable>
 
 		<Pager
 				:refCollection="collection"
-				:flagSignal="collection.flagSignal"
 		></Pager>
+
+		<pre>
+			{{JSON.stringify(collection, null, '   ')}}
+		</pre>
+
 	</div>
 </template>
 

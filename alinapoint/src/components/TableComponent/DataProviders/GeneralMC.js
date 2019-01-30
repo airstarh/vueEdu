@@ -145,6 +145,12 @@ export class GeneralCollection extends GeneralModel {
 
 	/**endregion Pager */
 
+	/**region Sort*/
+	sortName = [];
+	sortAsc  = [];
+
+	/**endregion Sort*/
+
 	static newInst(models = [], options = {}) {
 		const _this = new this();
 		_this.setOptions(options);
@@ -204,5 +210,44 @@ export class GeneralCollection extends GeneralModel {
 	}
 
 	//endregion Pager
-	//endregion Ajax
+
+	//region Sort
+	sortFromPropsToGetParams() {
+		this.getParams.sn = this.sortName.toString();
+		this.getParams.sa = this.sortAsc.toString();
+	}
+
+	setSortProps(field, level = 0) {
+		const sn = this.sortName;
+		const sa = this.sortAsc;
+		if (sn[level] === field) {
+			sa[level] = !sa[level];
+		} else {
+			sn[level] = field;
+			sa[level] = true;
+		}
+		this.flagSignal = !this.flagSignal;
+		return this;
+	}
+
+	isSortedBy(field) {
+		const sn      = this.sortName;
+		const sa      = this.sortAsc;
+		const level   = sn.indexOf(field);
+		let direction = 'sort';
+		if (level > -1) {
+			switch (sa[level]) {
+				case true:
+					direction = `ASC_${level}`;
+					break;
+				case false:
+					direction = `DESC_${level}`;
+					break;
+			}
+		}
+		return direction;
+	}
+
+//endregion Sort
+//endregion Ajax
 }
