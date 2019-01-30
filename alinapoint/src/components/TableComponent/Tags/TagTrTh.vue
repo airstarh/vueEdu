@@ -18,19 +18,19 @@
 			</div>
 			<div class="get-params">
 				<div class="get-params-each">
-					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]" @keyup="refCollection.ajaxGet()">
+					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]" @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="=" v-model="refCollection.getParams[`eq_${f}`]" @keyup="refCollection.ajaxGet()">
+					<input type="text" placeholder="=" v-model="refCollection.getParams[`eq_${f}`]" @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="%LIKE%" v-model="refCollection.getParams[`lk_${f}`]" @keyup="refCollection.ajaxGet()">
+					<input type="text" placeholder="%LIKE%" v-model="refCollection.getParams[`lk_${f}`]" @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder=">" v-model="refCollection.getParams[`gt_${f}`]" @keyup="refCollection.ajaxGet()">
+					<input type="text" placeholder=">" v-model="refCollection.getParams[`gt_${f}`]" @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="<" v-model="refCollection.getParams[`lt_${f}`]" @keyup="refCollection.ajaxGet()">
+					<input type="text" placeholder="<" v-model="refCollection.getParams[`lt_${f}`]" @keyup="executeFieldSearch()">
 				</div>
 			</div>
 		</th>
@@ -54,6 +54,12 @@
 			TagTh,
 			TagTd,
 		},
-		methods:{}
+		methods:{
+			executeFieldSearch(){
+				this.refCollection.pageCurrentNumber = 1;
+				this.refCollection.pagerFromPropsToGet();
+				this.refCollection.ajaxGet()
+			}
+		}
 	}
 </script>
