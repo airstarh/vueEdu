@@ -23,13 +23,21 @@ export class GeneralModel extends Ajax {
 		return _this;
 	}
 
-	setGetParams(newObj = {}) {
-		const prevGetParams = StorageStates.gOrEmptyObject(this.curDataKey(), 'getParams');
-		this.getParams      = Object.assign(prevGetParams, this.getParams, newObj);
+	setGetParams(gpNewest = {}) {
+		const gpFromStorage = StorageStates.gOrEmptyObject(this.curDataKey(), 'getParams');
+		const gpOnInit      = this.getParams;
+
+		this.getParams = Object.assign(
+			gpOnInit,
+			gpFromStorage,
+			gpNewest
+		);
 
 		//ToDo: Not the best approach.
 		this.getParams.cmd = this.dataType;
 		this.getParams.m   = this.tableName;
+
+		this.saveGetParams();
 
 		return this;
 	}
@@ -39,8 +47,7 @@ export class GeneralModel extends Ajax {
 		if (this.hookBeforeAjaxGet) {
 			this.hookBeforeAjaxGet();
 		}
-		UtilsObject.eraseEmpty(this.getParams);
-		StorageStates.s(this.curDataKey(), 'getParams', this.getParams);
+		this.saveGetParams({});
 		return super
 			.ajaxGet()
 			.then(r => {
@@ -49,6 +56,11 @@ export class GeneralModel extends Ajax {
 			.then(r => {
 				return this.ajaxGetAfterSuccess(r);
 			})
+	}
+
+	saveGetParams() {
+		UtilsObject.eraseEmpty(this.getParams);
+		StorageStates.s(this.curDataKey(), 'getParams', this.getParams);
 	}
 
 	ajaxGetAfterSuccess(aPromise) {
@@ -137,29 +149,20 @@ export class GeneralCollection extends GeneralModel {
 		const _this = new this();
 		_this.setOptions(options);
 		_this.setModels(models);
+		_this.pagerFromPropsToGet({});
 		_this.setGetParams({});
+		_this.pagerFromGetToProps({});
 
 		return _this;
 	}
 
 	//region Ajax
-	hookBeforeAjaxGet() {
-		this.translatePageParamsToGetParams();
-		return this;
-	}
-
-	translatePageParamsToGetParams() {
-		//ToDo: Better translate to pn or pcn instead p.
-		this.getParams.p  = this.pageCurrentNumber;
-		this.getParams.ps = this.pageSize;
-		return this;
-	}
-
 	ajaxGetAfterSuccess(aPromise) {
 		this.flagSignal         = !this.flagSignal;
 		this.lastJsonedResponse = aPromise;
 		this.setModels(this.lastJsonedResponse.data);
-		this.setPageInfo(this.lastJsonedResponse.meta);
+		this.pagerFromMeta(this.lastJsonedResponse.meta);
+
 		if (this.hookAjaxGetAfterSuccess) {
 			return this.hookAjaxGetAfterSuccess(aPromise);
 		}
@@ -173,24 +176,33 @@ export class GeneralCollection extends GeneralModel {
 		                  : Object.keys(models[0]);
 		this.arrFieldsOrderSet(arrFields);
 		models.forEach((e, i) => {
-			const m          = this.mClassName.newInst(e, {tableName: this.tableName});
+			const m = this.mClassName.newInst(e, {tableName: this.tableName});
 			//m.arrFieldsOrder = this.arrFieldsOrder;
 			m.arrFieldsOrderSet(this.arrFieldsOrder, true);
-			this.models[i]   = m;
+			this.models[i] = m;
 		});
 		return this;
 	}
 
-	setPageInfo(meta) {
-		UtilsData.isset(meta.pageCurrentNumber)
-		&& (this.pageCurrentNumber = parseInt(meta.pageCurrentNumber));
-		UtilsData.isset(meta.pageSize)
-		&& (this.pageSize = parseInt(meta.pageSize));
-		UtilsData.isset(meta.rowsTotal)
-		&& (this.rowsTotal = parseInt(meta.rowsTotal));
+	//region Pager
 
-		return this;
+	pagerFromPropsToGet() {
+		this.getParams.p  = this.pageCurrentNumber;
+		this.getParams.ps = this.pageSize;
 	}
 
+	pagerFromGetToProps() {
+		this.pageCurrentNumber = this.getParams.p || this.pageCurrentNumber;
+		this.pageSize          = this.getParams.ps || this.pageSize;
+	}
+
+	pagerFromMeta(meta = {}) {
+		this.pageCurrentNumber = meta.pageCurrentNumber;
+		this.pageSize          = meta.pageSize;
+		this.rowsTotal         = meta.rowsTotal;
+		this.pagerFromPropsToGet();
+	}
+
+	//endregion Pager
 	//endregion Ajax
 }

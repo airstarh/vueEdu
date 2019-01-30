@@ -75,6 +75,7 @@
 
 			gotoPageNumber(i) {
 				this.refCollection.pageCurrentNumber = i;
+				this.refCollection.pagerFromPropsToGet();
 				this.refCollection.ajaxGet();
 			},
 
