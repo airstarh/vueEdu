@@ -10,9 +10,13 @@
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
-					<button @click="refCollection.setSortProps(f, 0)"
+					<button @click="executeSort(f, 0)"
 					        :key="refCollection.flagSignal"
-					>{{refCollection.isSortedBy(f)}}</button>
+					        :class="[
+					            'sort',
+							    refCollection.isSortedBy(f),
+						    ]"
+					></button>
 				</div>
 				<div class="flex-menu-item">
 					<button @click="refCollection.arrFieldsOrderSetLater(i)">></button>
@@ -61,6 +65,12 @@
 				this.refCollection.pageCurrentNumber = 1;
 				this.refCollection.pagerFromPropsToGet();
 				this.refCollection.ajaxGet()
+			},
+
+			executeSort(field, level){
+				this.refCollection.setSortProps(field, level);
+				this.refCollection.sortFromPropsToGet();
+				this.refCollection.ajaxGet();
 			}
 		}
 	}

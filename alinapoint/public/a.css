@@ -27,14 +27,7 @@ table.data-table
   border:          #000 solid 1px;
   border-collapse: collapse;
 }
-table.data-table tr td,
-table.data-table tr th
-{
-  border:         #000 solid 1px;
-  padding:        3px;
-  vertical-align: top;
-  min-width:      100px;
-}
+
 table.data-table tr
 {
   height: 50px;
@@ -43,6 +36,16 @@ table.data-table tr.odd
 {
   background-color: #ebebeb;
 }
+
+table.data-table tr td,
+table.data-table tr th
+{
+  border:         #000 solid 1px;
+  padding:        3px;
+  vertical-align: top;
+  min-width:      250px;
+}
+
 .get-params .get-params-each
 {
   border: #000 solid 1px;
@@ -54,6 +57,19 @@ table.data-table tr td input,
 {
   display: block;
   width:   100%;
+}
+
+.sort:after
+{
+  content: "~";
+}
+.sort.ASC_0:after
+{
+  content: "1";
+}
+.sort.DESC_0:after
+{
+  content: "0";
 }
 /*endregion Data Table*/
 

@@ -156,8 +156,10 @@ export class GeneralCollection extends GeneralModel {
 		_this.setOptions(options);
 		_this.setModels(models);
 		_this.pagerFromPropsToGet({});
-		_this.setGetParams({});
+		_this.sortFromPropsToGet();
+		_this.setGetParams();
 		_this.pagerFromGetToProps({});
+		_this.sortFromGetToProps({});
 
 		return _this;
 	}
@@ -212,9 +214,20 @@ export class GeneralCollection extends GeneralModel {
 	//endregion Pager
 
 	//region Sort
-	sortFromPropsToGetParams() {
+	sortFromPropsToGet() {
 		this.getParams.sn = this.sortName.toString();
 		this.getParams.sa = this.sortAsc.toString();
+	}
+
+	sortFromGetToProps() {
+		if (!UtilsData.empty(this.getParams.sn)) {
+			this.sortName = this.getParams.sn.split(',');
+		}
+		if (!UtilsData.empty(this.getParams.sa)) {
+			this.sortAsc = this.getParams.sa.split(',');
+		}
+
+		return this;
 	}
 
 	setSortProps(field, level = 0) {
@@ -226,7 +239,7 @@ export class GeneralCollection extends GeneralModel {
 			sn[level] = field;
 			sa[level] = true;
 		}
-		this.flagSignal = !this.flagSignal;
+		//this.flagSignal = !this.flagSignal;
 		return this;
 	}
 
@@ -234,17 +247,24 @@ export class GeneralCollection extends GeneralModel {
 		const sn      = this.sortName;
 		const sa      = this.sortAsc;
 		const level   = sn.indexOf(field);
-		let direction = 'sort';
+		let direction = 'none';
 		if (level > -1) {
 			switch (sa[level]) {
 				case true:
+				case 1:
+				case "1":
+				case "true":
 					direction = `ASC_${level}`;
 					break;
 				case false:
+				case 0:
+				case "0":
+				case "false":
 					direction = `DESC_${level}`;
 					break;
 			}
 		}
+
 		return direction;
 	}
 
