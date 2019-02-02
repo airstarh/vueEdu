@@ -4,13 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-div,
-input[type=text],
-select,
-button
-{
-  box-sizing: border-box;
-}
+
 button
 {
   padding: 2px;
@@ -45,6 +39,12 @@ table.data-table tr th
   padding:        3px;
   vertical-align: top;
   min-width:      250px;
+}
+
+table.data-table tr th {
+  background-color: #000;: ;
+  color: #fff;
+  border-color: #fff;
 }
 
 .get-params .get-params-each

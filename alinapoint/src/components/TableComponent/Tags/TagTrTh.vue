@@ -2,11 +2,13 @@
 	<tr v-if="refArrFieldsOrder">
 		<th>
 			Actions
+			<br>
+			<button @click="log()">LOG</button>
 		</th>
 		<th v-for="(f, i) in refArrFieldsOrder">
 			<div class="flex-menu">
 				<div class="flex-menu-item">
-					<button @click="refCollection.arrFieldsOrderSetEarlier(i)"><</button>
+					<button @click="fieldSetEarlier(i)"><</button>
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
@@ -19,7 +21,7 @@
 					></button>
 				</div>
 				<div class="flex-menu-item">
-					<button @click="refCollection.arrFieldsOrderSetLater(i)">></button>
+					<button @click="fieldSetLater(i)">></button>
 				</div>
 			</div>
 			<div class="get-params">
@@ -71,6 +73,24 @@
 				this.refCollection.setSortProps(field, level);
 				this.refCollection.sortFromPropsToGet();
 				this.refCollection.ajaxGet();
+			},
+
+			fieldSetEarlier(i) {
+				this.refCollection.arrFieldsOrderSetEarlier(i);
+			},
+			fieldSetLater(i) {
+				this.refCollection.arrFieldsOrderSetLater(i);
+			},
+
+			log(){
+				console.log("TagTrTh ++++++++++");
+				console.log(this.refCollection);
+			},
+		},
+		watch: {
+			refArrFieldsOrder(){
+				console.log("refCollection.arrFieldsOrder ++++++++++");
+				console.log(this);
 			}
 		}
 	}
