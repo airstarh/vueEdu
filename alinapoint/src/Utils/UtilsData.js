@@ -1,4 +1,4 @@
-export default class UtilsData{
+export default class UtilsData {
 
 	static isset(ObjectPropertyOrArrayKey) {
 		return typeof ObjectPropertyOrArrayKey !== "undefined" && ObjectPropertyOrArrayKey !== null;
@@ -15,5 +15,10 @@ export default class UtilsData{
 			;
 	}
 
-
+	static isArray(something) {
+		//ToDo: Look here later: https://juhukinners.wordpress.com/2009/01/11/typeof-considered-useless-or-how-to-write-robust-type-checks/
+		return UtilsData.isset(something.length)
+			&& typeof something !== 'string'
+			;
+	}
 }

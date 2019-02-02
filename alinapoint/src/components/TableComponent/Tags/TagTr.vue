@@ -6,11 +6,16 @@
 	    ]"
 	>
 		<td>
-			<button @click="log()">LOG</button><br/>
-			<button @click="update()">Update</button><br/>
-			<button>Insert</button><br/>
-			<button>Edit</button><br/>
-			<button>Del</button><br/>
+			<button @click="log()">LOG</button>
+			<br/>
+			<button @click="update()">Update</button>
+			<br/>
+			<button>Insert</button>
+			<br/>
+			<button>Edit</button>
+			<br/>
+			<button>Del</button>
+			<br/>
 
 		</td>
 		<TagTd v-if="refArrFieldsOrder.length > 0"
@@ -31,23 +36,23 @@
 	export default {
 		name:       'TagTr',
 		props:      {
-			refModel:   GeneralModel,
-			indexModel: Number,
+			refModel:          GeneralModel,
+			indexModel:        Number,
 			refArrFieldsOrder: Array,
 		},
-		methods:{
-			log(){
+		methods:    {
+			log() {
 				console.log("TagTr refModel ++++++++++");
 				console.log(this.refModel);
 			},
-			update(){
+			update() {
 				this.refModel.ajaxPut();
 			}
 		},
 		components: {
-			TagTable,
-			TagTrTh,
-			TagTd,
+			TagTable: () => import('./TagTable.vue'),
+			TagTrTh:  () => import('./TagTrTh.vue'),
+			TagTd:    () => import('./TagTd.vue'),
 		},
 	}
 </script>

@@ -45,7 +45,7 @@
 
 <script>
 	import TagTable            from "./TagTable.vue"
-	import TagTh               from "./TagTrTh.vue"
+	import TagTr               from "./TagTr.vue"
 	import TagTd               from "./TagTd.vue"
 	import {GeneralCollection} from "../DataProviders/GeneralMC";
 
@@ -56,9 +56,9 @@
 			refArrFieldsOrder: Array,
 		},
 		components: {
-			TagTable,
-			TagTh,
-			TagTd,
+			TagTable: () => import('./TagTable.vue'),
+			TagTr: () => import('./TagTr.vue'),
+			TagTd: () => import('./TagTd.vue'),
 		},
 		methods:{
 			executeFieldSearch(){

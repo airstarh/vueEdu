@@ -26,9 +26,9 @@
 			refCollection: GeneralCollection,
 		},
 		components: {
-			TagTr,
-			TagTrTh,
-			TagTd,
+			TagTr:   () => import('./TagTr.vue'),
+			TagTrTh: () => import('./TagTrTh.vue'),
+			TagTd:   () => import('./TagTd.vue'),
 		}
 	}
 </script>

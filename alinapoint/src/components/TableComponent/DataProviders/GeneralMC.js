@@ -133,10 +133,11 @@ export class GeneralModel extends Ajax {
 }
 
 export class GeneralCollection extends GeneralModel {
-	dataType   = 'collection';
-	flagSignal = true;
-	models     = [];
-	mClassName = GeneralModel;
+	dataType        = 'collection';
+	flagSignal      = true;
+	models          = [];
+	mClassName      = GeneralModel;
+	isSubCollection = false;
 
 	/**region Pager */
 	pageCurrentNumber = 1;
@@ -178,6 +179,14 @@ export class GeneralCollection extends GeneralModel {
 	}
 
 	setModels(models = []) {
+
+		if (!models.forEach) {
+			console.log("models ++++++++++");
+			console.log(typeof models);
+			console.log(models);
+			return ;
+		}
+
 		this.models     = [];
 		const arrFields = (UtilsData.empty(models[0]))
 		                  ? []
