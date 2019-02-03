@@ -77,9 +77,11 @@
 
 			fieldSetEarlier(i) {
 				this.refCollection.arrFieldsOrderSetEarlier(i);
+				this.$forceUpdate();
 			},
 			fieldSetLater(i) {
 				this.refCollection.arrFieldsOrderSetLater(i);
+				this.$forceUpdate();
 			},
 
 			log(){
