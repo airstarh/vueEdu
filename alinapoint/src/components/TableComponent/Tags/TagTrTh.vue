@@ -1,7 +1,7 @@
 <template>
 	<tr v-if="refArrFieldsOrder">
 		<th>
-			Actions
+			Actions [{{refCollection.tableName}}]
 			<br>
 			<button @click="log()">LOG</button>
 		</th>
@@ -24,7 +24,7 @@
 					<button @click="fieldSetLater(i)">></button>
 				</div>
 			</div>
-			<div class="get-params">
+			<div class="get-params" v-if="!refCollection.isSubCollection">
 				<div class="get-params-each">
 					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]" @keyup="executeFieldSearch()">
 				</div>
