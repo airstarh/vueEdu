@@ -1,7 +1,7 @@
 <template>
 	<div id="sapp">
 		<h1>Hello Router!</h1>
-		<p>
+		<div class="router-menu-links">
 			<!-- use router-link component for navigation. -->
 			<!-- specify the link by passing the `to` prop. -->
 			<!-- `<router-link>` will be rendered as an `<a>` tag by default -->
@@ -14,7 +14,7 @@
 			<router-link to="/rawcomponent/Привет, мир!">RawComponent + Param</router-link>
 			&nbsp;
 			<router-link to="/rawcomponent">RawComponent</router-link>
-		</p>
+		</div>
 		<!-- route outlet -->
 		<!-- component matched by the route will render here -->
 

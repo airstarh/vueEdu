@@ -9,12 +9,28 @@ button
 {
   padding: 2mm;
 }
+a:hover,
 input:focus,
 select:focus,
 textarea:focus
 {
   background-color: aqua;
 }
+
+/*region Router*/
+.router-menu-links {
+  margin: 5mm;
+}
+.router-menu-links a{
+  padding: 2mm;
+  background-color: #ebebeb;
+}
+.router-menu-links a.router-link-active  {
+  color: #fff;
+  background-color: #000;
+}
+/*endregion Router*/
+
 /*region Data Table*/
 table.data-table
 {
