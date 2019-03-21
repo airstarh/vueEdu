@@ -53,8 +53,10 @@
 		},
 		watch:      {
 			'$route'(to, from) {
-				// console.log("from to++++++++++");
-				// console.log(to);
+				console.log(`Router FROM:`);
+				console.log(from);
+				console.log(`Router TO:`);
+				console.log(to);
 			}
 		}
 	}

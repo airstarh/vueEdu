@@ -38,7 +38,7 @@
 			},
 
 			getModel() {
-				this.model = new GeneralModel({}, {
+				this.model = GeneralModel.newInst({}, {
 						tableName: 'user',
 						getParams: {
 							cmd: 'modelOne',
