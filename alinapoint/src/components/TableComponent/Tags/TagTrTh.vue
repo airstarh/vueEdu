@@ -6,11 +6,14 @@
 			<button @click="log()">LOG</button>
 		</th>
 		<th v-for="(f, i) in refArrFieldsOrder"
-		    :key="i"
+		    :key="`${i}_${i}`"
+		    :style="{
+						'background-color':dynColor()
+					}"
 		>
 			<div class="flex-menu">
 				<div class="flex-menu-item">
-					<button @click="fieldSetEarlier(i)">&lt;</button>
+					<button @click="moveField(i, -1)">&lt;</button>
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
@@ -22,7 +25,7 @@
 					></button>
 				</div>
 				<div class="flex-menu-item">
-					<button @click="fieldSetLater(i)">&gt;</button>
+					<button @click="moveField(i, +1)">&gt;</button>
 				</div>
 			</div>
 			<div class="get-params" v-if="!refCollection.isSubCollection">
@@ -78,21 +81,32 @@
 				this.refCollection.ajaxGet();
 			},
 
-			fieldSetEarlier(i) {
-				this.refCollection.arrFieldsOrderSetEarlier(i);
-				this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal)
-				//this.$forceUpdate();
-			},
-			fieldSetLater(i) {
-				this.refCollection.arrFieldsOrderSetLater(i);
-				this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal)
-				//this.$forceUpdate();
+			moveField(curIndex, where) {
+				if (where < 0) {
+					this.refCollection.arrFieldsOrderSetEarlier(curIndex);
+				} else {
+					this.refCollection.arrFieldsOrderSetLater(curIndex);
+				}
+				//this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal);
+				this.refCollection.flagSignal = !this.refCollection.flagSignal;
+				this.$forceUpdate();
 			},
 
 			log() {
 				console.log("TagTrTh ++++++++++");
 				console.log(this.refCollection);
 			},
+
+			dynColor() {
+				let r = 0;
+				let g = 0;
+				let b = 0;
+				r = Math.floor(Math.random() * 255);
+				g = Math.floor(Math.random() * 255);
+				b = Math.floor(Math.random() * 255);
+				let color = `rgb(${r}, ${g}, ${b})`;
+				return color
+			}
 		},
 		watch:      {
 			refArrFieldsOrder() {
