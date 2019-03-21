@@ -4,13 +4,16 @@
 			<select v-model="refCollection.pageSize"
 			        @change="onChangePageSize($event)"
 			>
-                <option v-for="(label, i) in pageSizeVariants" v-bind:value="label">
+                <option v-for="(label, i) in pageSizeVariants" v-bind:value="label"
+                        :key="i"
+                >
 	                {{ label }}
                 </option>
 			</select>
 		</span>
 		<span>
-			<button v-for="(label) in pagesTotalArray"
+			<button v-for="(label, i) in pagesTotalArray"
+			        :key="i"
 			        @click="gotoPageNumber(label)"
 			        :class="[
 		                {active: label == refCollection.pageCurrentNumber}

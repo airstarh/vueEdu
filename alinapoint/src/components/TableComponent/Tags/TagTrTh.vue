@@ -5,15 +5,16 @@
 			<br>
 			<button @click="log()">LOG</button>
 		</th>
-		<th v-for="(f, i) in refArrFieldsOrder">
+		<th v-for="(f, i) in refArrFieldsOrder"
+		    :key="i"
+		>
 			<div class="flex-menu">
 				<div class="flex-menu-item">
-					<button @click="fieldSetEarlier(i)"><</button>
+					<button @click="fieldSetEarlier(i)">&lt;</button>
 				</div>
 				<div class="flex-menu-item">
 					{{f}}
 					<button @click="executeSort(f, 0)"
-					        :key="refCollection.flagSignal"
 					        :class="[
 					            'sort',
 							    refCollection.isSortedBy(f),
@@ -21,7 +22,7 @@
 					></button>
 				</div>
 				<div class="flex-menu-item">
-					<button @click="fieldSetLater(i)">></button>
+					<button @click="fieldSetLater(i)">&gt;</button>
 				</div>
 			</div>
 			<div class="get-params" v-if="!refCollection.isSubCollection">

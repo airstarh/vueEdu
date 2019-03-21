@@ -3,11 +3,13 @@
 		<h1>Foo</h1>
 		<button @click="log()">LOG</button>
 		<table class="data-table">
-			<tr v-for="(fName, i) in model.arrFieldsOrder">
+			<tr v-for="(fName, i) in model.arrFieldsOrder"
+			    :key="i"
+			>
 				<td>
-					<button @click="model.arrFieldsOrderSetEarlier(i)"><</button>
+					<button @click="model.arrFieldsOrderSetEarlier(i)">&lt;</button>
 					{{ i }}
-					<button @click="model.arrFieldsOrderSetLater(i)">></button>
+					<button @click="model.arrFieldsOrderSetLater(i)">&gt;</button>
 				</td>
 				<td>{{ fName }}</td>
 				<td>{{ model.attributes[fName] }}</td>

@@ -1,4 +1,4 @@
-import UtilsData from "./UtilsData";
+//import UtilsData from "./UtilsData";
 
 export default class UtilsObject {
 
@@ -19,7 +19,7 @@ export default class UtilsObject {
 			}
 		}
 		return ref;
-	};
+	}
 
 	static setByPath(o, path = '', value) {
 		const pathArr = path.split('.');
@@ -36,7 +36,7 @@ export default class UtilsObject {
 		}
 		ref[pathArr[len]] = value;
 		return value;
-	};
+	}
 
 	static setByPathArray(o, pathArr = [], value) {
 		const len = pathArr.length - 1;
@@ -52,7 +52,7 @@ export default class UtilsObject {
 		}
 		ref[pathArr[len]] = value;
 		return value;
-	};
+	}
 
 	//endregion Get Set by path.
 
