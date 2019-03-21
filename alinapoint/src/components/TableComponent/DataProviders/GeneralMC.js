@@ -119,11 +119,13 @@ export class GeneralModel extends Ajax {
 
 	arrFieldsOrderSetEarlier(i) {
 		UtilsArray.elSetEarlier(this.arrFieldsOrder, i);
+		//this.flagSignal = !this.flagSignal;
 		return this;
 	}
 
 	arrFieldsOrderSetLater(i) {
 		UtilsArray.elSetLater(this.arrFieldsOrder, i);
+		//this.flagSignal = !this.flagSignal;
 		return this;
 	}
 
@@ -184,7 +186,7 @@ export class GeneralCollection extends GeneralModel {
 			console.log("models ++++++++++");
 			console.log(typeof models);
 			console.log(models);
-			return ;
+			return;
 		}
 
 		this.models     = [];

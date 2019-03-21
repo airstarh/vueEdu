@@ -7,6 +7,7 @@
 		></TagTrTh>
 
 		<TagTr v-for="(m, i) in refCollection.models"
+		       :key="i"
 		       :refModel="m"
 		       :indexModel="i"
 		       :refArrFieldsOrder="refCollection.arrFieldsOrder"
@@ -15,9 +16,6 @@
 </template>
 
 <script>
-	import TagTr               from "./TagTr.vue"
-	import TagTrTh             from "./TagTrTh.vue"
-	import TagTd               from "./TagTd.vue"
 	import {GeneralCollection} from "../DataProviders/GeneralMC";
 
 	export default {

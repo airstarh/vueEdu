@@ -14,9 +14,6 @@
 
 <script>
 	import UtilsData                         from "../../../Utils/UtilsData";
-	import TagTable                          from "./TagTable.vue"
-	import TagTr                             from "./TagTr.vue"
-	import TagTrTh                           from "./TagTrTh.vue"
 	import {GeneralCollection, GeneralModel} from "../DataProviders/GeneralMC";
 
 	export default {
@@ -42,7 +39,6 @@
 			},
 			CollectionNewInst(models = [], options = {}) {
 				return GeneralCollection.newInst(models, options)
-				//return GeneralCollection.newInst(refModel.attributes[mFieldName], {isSubCollection: true})
 			}
 		}
 	}

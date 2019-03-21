@@ -26,19 +26,24 @@
 			</div>
 			<div class="get-params" v-if="!refCollection.isSubCollection">
 				<div class="get-params-each">
-					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]" @keyup="executeFieldSearch()">
+					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]"
+					       @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="=" v-model="refCollection.getParams[`eq_${f}`]" @keyup="executeFieldSearch()">
+					<input type="text" placeholder="=" v-model="refCollection.getParams[`eq_${f}`]"
+					       @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="%LIKE%" v-model="refCollection.getParams[`lk_${f}`]" @keyup="executeFieldSearch()">
+					<input type="text" placeholder="%LIKE%" v-model="refCollection.getParams[`lk_${f}`]"
+					       @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder=">" v-model="refCollection.getParams[`gt_${f}`]" @keyup="executeFieldSearch()">
+					<input type="text" placeholder=">" v-model="refCollection.getParams[`gt_${f}`]"
+					       @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
-					<input type="text" placeholder="<" v-model="refCollection.getParams[`lt_${f}`]" @keyup="executeFieldSearch()">
+					<input type="text" placeholder="<" v-model="refCollection.getParams[`lt_${f}`]"
+					       @keyup="executeFieldSearch()">
 				</div>
 			</div>
 		</th>
@@ -46,9 +51,6 @@
 </template>
 
 <script>
-	import TagTable            from "./TagTable.vue"
-	import TagTr               from "./TagTr.vue"
-	import TagTd               from "./TagTd.vue"
 	import {GeneralCollection} from "../DataProviders/GeneralMC";
 
 	export default {
@@ -59,17 +61,17 @@
 		},
 		components: {
 			TagTable: () => import('./TagTable.vue'),
-			TagTr: () => import('./TagTr.vue'),
-			TagTd: () => import('./TagTd.vue'),
+			TagTr:    () => import('./TagTr.vue'),
+			TagTd:    () => import('./TagTd.vue'),
 		},
-		methods:{
-			executeFieldSearch(){
+		methods:    {
+			executeFieldSearch() {
 				this.refCollection.pageCurrentNumber = 1;
 				this.refCollection.pagerFromPropsToGet();
 				this.refCollection.ajaxGet()
 			},
 
-			executeSort(field, level){
+			executeSort(field, level) {
 				this.refCollection.setSortProps(field, level);
 				this.refCollection.sortFromPropsToGet();
 				this.refCollection.ajaxGet();
@@ -77,22 +79,31 @@
 
 			fieldSetEarlier(i) {
 				this.refCollection.arrFieldsOrderSetEarlier(i);
-				this.$forceUpdate();
+				this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal)
+				//this.$forceUpdate();
 			},
 			fieldSetLater(i) {
 				this.refCollection.arrFieldsOrderSetLater(i);
-				this.$forceUpdate();
+				this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal)
+				//this.$forceUpdate();
 			},
 
-			log(){
+			log() {
 				console.log("TagTrTh ++++++++++");
 				console.log(this.refCollection);
 			},
 		},
-		watch: {
-			refArrFieldsOrder(){
-				console.log("refCollection.arrFieldsOrder ++++++++++");
-				console.log(this);
+		watch:      {
+			refArrFieldsOrder() {
+				// console.log("refCollection.arrFieldsOrder ++++++++++");
+				// console.log(this);
+			},
+			'refCollection.flagSignal': {
+				handler() {
+					console.log("refCollection.flagSignal ++++++++++");
+					console.log(this.refCollection.flagSignal);
+				},
+				deep: true
 			}
 		}
 	}

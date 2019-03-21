@@ -20,6 +20,7 @@
 		</td>
 		<TagTd v-if="refArrFieldsOrder.length > 0"
 		       v-for="(f, i) in refArrFieldsOrder"
+		       :key="i"
 		       :refModel="refModel"
 		       :mFieldName="f"
 		       :mFieldIndex="i"
@@ -28,9 +29,6 @@
 </template>
 
 <script>
-	import TagTable       from "./TagTable.vue"
-	import TagTrTh        from "./TagTrTh.vue"
-	import TagTd          from "./TagTd.vue"
 	import {GeneralModel} from "../DataProviders/GeneralMC";
 
 	export default {

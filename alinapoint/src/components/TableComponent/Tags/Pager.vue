@@ -1,7 +1,9 @@
 <template>
 	<div v-if="refCollection.arrFieldsOrder.length > 0">
 		<span>
-			<select v-model="refCollection.pageSize" @change="onChangePageSize($event)">
+			<select v-model="refCollection.pageSize"
+			        @change="onChangePageSize($event)"
+			>
                 <option v-for="(label, i) in pageSizeVariants" v-bind:value="label">
 	                {{ label }}
                 </option>
