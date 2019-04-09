@@ -6,7 +6,7 @@
 			<button @click="log()">LOG</button>
 		</th>
 		<th v-for="(f, i) in refArrFieldsOrder"
-		    :key="`${i}_${i}`"
+		    :key="i"
 		    :style="{
 						'background-color':dynColor()
 					}"
@@ -30,7 +30,7 @@
 			</div>
 			<div class="get-params" v-if="!refCollection.isSubCollection">
 				<div class="get-params-each">
-					<input type="text" :placeholder="f" v-model="refCollection.getParams[f]"
+					<input type="text" :placeholder="f" v-model="refCollection.getParams[`${f}`]"
 					       @keyup="executeFieldSearch()">
 				</div>
 				<div class="get-params-each">
@@ -89,7 +89,13 @@
 				}
 				//this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal);
 				this.refCollection.flagSignal = !this.refCollection.flagSignal;
-				this.$forceUpdate();
+
+				/**
+				 * DOES NOT WORK!!!
+				 * It updates only Table Headers!!!
+				 * But other Table Columns below remain on their initial positions!!!
+				 * */
+				//this.$forceUpdate();
 			},
 
 			log() {
@@ -115,11 +121,19 @@
 			},
 			'refCollection.flagSignal': {
 				handler() {
-					console.log("refCollection.flagSignal ++++++++++");
+					console.log("CHANGED refCollection.flagSignal ++++++++++");
 					console.log(this.refCollection.flagSignal);
 				},
 				deep: true
+			},
+			'refCollection.getParams': {
+				handler() {
+					console.log("CHANGED refCollection.getParams ++++++++++");
+					console.log(this.refCollection.getParams);
+				},
+				deep: true
 			}
+
 		}
 	}
 </script>
