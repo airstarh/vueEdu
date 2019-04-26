@@ -2,6 +2,10 @@ H:
 cd H:\_REPO\vueEdu\alinapoint
 npm run serve
 
+D:
+cd D:\_REPO\vueEdu\alinapoint
+npm run serve
+
 Set another port:
 https://stackoverflow.com/a/53007377/3142281
 

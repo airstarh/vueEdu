@@ -1,9 +1,10 @@
-import Vue       from 'vue/dist/vue.js'
-import VueRouter from 'vue-router'
-import App       from './App.vue'
-import FooBar    from './components/FooBar'
-import Foo       from './components/Foo'
-import Bar       from './components/Bar'
+import Vue        from 'vue/dist/vue.js'
+import VueRouter  from 'vue-router'
+import App        from './App.vue'
+import FooBar     from './components/FooBar'
+import Foo        from './components/Foo'
+import Bar        from './components/Bar'
+import SImplePage from "./assets/pages/SImplePage";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
@@ -20,6 +21,7 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 // keep it simple for now.
 const router = new VueRouter({
 	routes: [
+		{path: '/Simple_Page', component: SImplePage},
 		{path: '/foobar', component: FooBar},
 		{path: '/foo', component: Foo},
 		{path: '/bar', component: Bar},

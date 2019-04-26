@@ -5,6 +5,8 @@
 			<!-- use router-link component for navigation. -->
 			<!-- specify the link by passing the `to` prop. -->
 			<!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+			<router-link to="/Simple_Page">Simple Page</router-link>
+			&nbsp;
 			<router-link to="/foo">Foo</router-link>
 			&nbsp;
 			<router-link to="/bar">Bar</router-link>
