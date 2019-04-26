@@ -25,3 +25,6 @@ npm-windows-upgrade
 https://stackoverflow.com/a/31520672/3142281
 
 ---
+
+// Bootstrap
+npm i vue bootstrap-vue bootstrap

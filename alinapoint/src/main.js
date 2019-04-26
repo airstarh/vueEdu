@@ -1,13 +1,21 @@
 import Vue        from 'vue/dist/vue.js'
+
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import VueRouter  from 'vue-router'
 import App        from './App.vue'
 import FooBar     from './components/FooBar'
 import Foo        from './components/Foo'
 import Bar        from './components/Bar'
-import SImplePage from "./assets/pages/SImplePage";
+import SImplePage from "./pages/SImplePage";
 
 Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+
+
 
 // 0. If using a module system (e.g. via vue-cli), import Vue and VueRouter
 // and then call `Vue.use(VueRouter)`.
