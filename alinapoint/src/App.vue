@@ -1,6 +1,5 @@
 <template>
-	<div id="sapp">
-		<h1>Hello Router!</h1>
+	<div id="body-container">
 		<div class="router-menu-links">
 			<!-- use router-link component for navigation. -->
 			<!-- specify the link by passing the `to` prop. -->
@@ -67,15 +66,14 @@
 /////////////////////////////////
 /////////////////////////////////
 <style>
-	#sapp
-	{
-		padding:                 10mm;
-		border:                  #000 solid 1px;
-		font-family:             'Avenir', Helvetica, Arial, sans-serif;
-		-webkit-font-smoothing:  antialiased;
+	#sapp {
+		padding: 10mm;
+		border: #000 solid 1px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-align:              left;
-		color:                   #2c3e50;
-		overflow:                auto;
+		text-align: left;
+		color: #2c3e50;
+		overflow: auto;
 	}
 </style>

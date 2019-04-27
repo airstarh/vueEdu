@@ -28,3 +28,5 @@ https://stackoverflow.com/a/31520672/3142281
 
 // Bootstrap
 npm i vue bootstrap-vue bootstrap
+// SASS
+npm install --save-dev node-sass sass-loader

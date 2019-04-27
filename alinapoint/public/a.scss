@@ -1,105 +1,109 @@
-*
-{
-  margin:  0;
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap-vue/src/index.scss';
+
+$base-background: #9BDAFF;
+
+/*region Common things */
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-button
-{
+button {
   padding: 2mm;
 }
+
 a:hover,
 input:focus,
 select:focus,
-textarea:focus
-{
+textarea:focus {
   background-color: aqua;
 }
+/*endregion Common things */
 
 /*region Router*/
 .router-menu-links {
   margin: 5mm;
 }
-.router-menu-links a{
+
+.router-menu-links a {
   padding: 2mm;
   background-color: #ebebeb;
 }
-.router-menu-links a.router-link-active  {
+
+.router-menu-links a.router-link-active {
   color: #fff;
   background-color: #000;
 }
+
 /*endregion Router*/
 
 /*region Data Table*/
-table.data-table
-{
-  display:         block;
-  border:          #000 solid 1px;
+table.data-table {
+  display: block;
+  border: #000 solid 1px;
   border-collapse: collapse;
 }
 
-table.data-table tr
-{
+table.data-table tr {
   height: 50px;
 }
-table.data-table tr.odd
-{
+
+table.data-table tr.odd {
   background-color: #ebebeb;
 }
 
 table.data-table tr td,
-table.data-table tr th
-{
-  border:         #000 solid 1px;
-  padding:        3px;
+table.data-table tr th {
+  border: #000 solid 1px;
+  padding: 3px;
   vertical-align: top;
-  min-width:      250px;
+  min-width: 250px;
 }
 
 table.data-table tr th {
-  background-color: #000;: ;
+  background-color: #000;
   color: #fff;
   border-color: #fff;
 }
 
-.get-params .get-params-each
-{
+.get-params .get-params-each {
   border: #000 solid 1px;
-  width:  90%;
+  width: 90%;
   margin: 2px auto;
 }
+
 table.data-table tr td input,
-.get-params-each input
-{
+.get-params-each input {
   display: block;
-  width:   100%;
+  width: 100%;
 }
 
-.sort:after
-{
+.sort:after {
   content: "~";
 }
-.sort.ASC_0:after
-{
+
+.sort.ASC_0:after {
   content: "1";
 }
-.sort.DESC_0:after
-{
+
+.sort.DESC_0:after {
   content: "0";
 }
+
 /*endregion Data Table*/
 
 /*region Flex menu*/
-.flex-menu
-{
-  display:         flex;
-  flex-direction:  row;
+.flex-menu {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items:     stretch;
+  align-items: stretch;
 }
-.flex-menu-item
-{
+
+.flex-menu-item {
   text-align: center;
 }
+
 /*endregion Flex menu*/

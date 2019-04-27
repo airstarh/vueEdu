@@ -6,7 +6,7 @@ import UtilsObject   from "../../../Utils/UtilsObject";
 
 export class GeneralModel extends Ajax {
 	dataType           = 'model';
-	url                = 'http://alinazero/alinaRestAccept';
+	url                = 'http://alinazero:8080/alinaRestAccept';
 	tableName          = 'XXX';
 	id                 = null;
 	pkName             = 'id';
