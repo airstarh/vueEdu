@@ -25,6 +25,7 @@ export default class UtilsData {
 		return something !== null
 			&& typeof something === "object"
 			&& typeof something.length !== "undefined"
-			&& something.__proto__ === Array.prototype;
+			//&& something.__proto__ === Array.prototype
+			;
 	}
 }

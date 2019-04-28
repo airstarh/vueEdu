@@ -41,7 +41,7 @@
 				this.model = GeneralModel.newInst({}, {
 						tableName: 'user',
 						getParams: {
-							cmd: 'modelOne',
+							cmd: 'model',
 							mId: 3,
 						}
 					}

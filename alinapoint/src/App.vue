@@ -1,5 +1,7 @@
 <template>
 	<div id="body-container">
+		<TagSpinner></TagSpinner>
+		<TagDevPanel></TagDevPanel>
 		<div class="router-menu-links">
 			<!-- use router-link component for navigation. -->
 			<!-- specify the link by passing the `to` prop. -->
@@ -18,39 +20,26 @@
 		</div>
 		<!-- route outlet -->
 		<!-- component matched by the route will render here -->
-
 		<router-view></router-view>
-
-
-		<!--<div>-->
-		<!--<h1>AnObject</h1>-->
-		<!--<div>{{ AnObject.prop1 }}</div>-->
-		<!--<div>{{ AnObject.prop2 }}</div>-->
-		<!--<div>{{ AnObject.concatAnObjectProps()}}</div>-->
-
-		<!--<HelloWorld-->
-		<!--:hwMessage="msg"-->
-		<!--/>-->
-		<!--</div>-->
 	</div>
 </template>
 /////////////////////////////////
 /////////////////////////////////
 /////////////////////////////////
 <script>
-	import HelloWorld from './components/HelloWorld.vue'
-	import AnObject   from "./services/AnObject";
+	import TagSpinner  from "./components/Spinner/TagSpinner";
+	import TagDevPanel from "./components/DevPanel/TagDevPanel";
 
 	export default {
 		name:       'app',
 		data() {
 			return {
 				msg:      'Hello Alina',
-				AnObject: AnObject
 			}
 		},
 		components: {
-			HelloWorld
+			TagSpinner,
+			TagDevPanel
 		},
 		watch:      {
 			'$route'(to, from) {
@@ -66,7 +55,7 @@
 /////////////////////////////////
 /////////////////////////////////
 <style>
-	#sapp {
+	#body-container {
 		padding: 10mm;
 		border: #000 solid 1px;
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
