@@ -55,7 +55,7 @@
 </template>
 
 <script>
-	import {GeneralCollection} from "../DataProviders/GeneralMC";
+	import {GeneralCollection} from "../../../services/GeneralMC";
 
 	export default {
 		name:       'TagTrTh',

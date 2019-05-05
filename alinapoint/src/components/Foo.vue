@@ -19,7 +19,7 @@
 </template>
 
 <script>
-	import {GeneralModel} from "./TableComponent/DataProviders/GeneralMC";
+	import {GeneralModel} from "../services/GeneralMC";
 
 	export default {
 		data() {

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-	import {GeneralModel} from "../DataProviders/GeneralMC";
+	import {GeneralModel} from "../../../services/GeneralMC";
 
 	export default {
 		name:       'TagTr',

@@ -14,7 +14,7 @@
 
 <script>
 	import UtilsData                         from "../../../Utils/UtilsData";
-	import {GeneralCollection, GeneralModel} from "../DataProviders/GeneralMC";
+	import {GeneralCollection, GeneralModel} from "../../../services/GeneralMC";
 
 	export default {
 		name:       'TagTd',

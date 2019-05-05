@@ -1,8 +1,8 @@
-import {Ajax}        from "../../../services/ajax";
-import UtilsArray    from "../../../Utils/UtilsArray";
-import UtilsData     from "../../../Utils/UtilsData";
-import StorageStates from "./StorageStates";
-import UtilsObject   from "../../../Utils/UtilsObject";
+import {Ajax}        from "./ajax";
+import UtilsArray    from "../Utils/UtilsArray";
+import UtilsData     from "../Utils/UtilsData";
+import StorageStates from "../components/TableComponent/DataProviders/StorageStates";
+import UtilsObject   from "../Utils/UtilsObject";
 
 export class GeneralModel extends Ajax {
 	dataType           = 'model';
