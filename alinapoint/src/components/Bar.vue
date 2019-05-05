@@ -26,7 +26,7 @@
 </template>
 
 <script>
-	import {GeneralCollection} from "../services/GeneralMC";
+	import {GeneralCollection} from "../services/GeneralModel";
 	import TagTable            from "./TableComponent/Tags/TagTable.vue"
 	import Pager               from "./TableComponent/Tags/Pager.vue"
 	import StorageStates       from "./TableComponent/DataProviders/StorageStates";
