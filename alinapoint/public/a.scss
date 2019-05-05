@@ -10,6 +10,27 @@ $base-background: #9BDAFF;
   box-sizing: border-box;
 }
 
+html { height: 100%; }
+
+body {
+  height: 100%;
+  position: relative;
+  overflow: hidden
+}
+
+#body-container {
+  position: relative;
+  padding: 10mm;
+  border: orange solid 2px;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+  height: 100%;
+  overflow: scroll;
+}
+
 button {
   padding: 2mm;
 }
