@@ -21,6 +21,9 @@ export default class UtilsData {
 		// 	&& typeof something !== 'string'
 		// 	;
 
+		// Also possible:
+		// return Object.prototype.toString.call(something) === '[object Array]';
+
 		// https://stackoverflow.com/a/12469043/3142281
 		return something !== null
 			&& typeof something === "object"

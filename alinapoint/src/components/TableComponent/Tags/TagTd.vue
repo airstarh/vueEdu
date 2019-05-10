@@ -13,8 +13,9 @@
 </template>
 
 <script>
-	import UtilsData                         from "../../../Utils/UtilsData";
-	import {GeneralCollection, GeneralModel} from "../../../services/GeneralModel";
+	import UtilsData           from "../../../Utils/UtilsData";
+	import {GeneralModel}      from "../../../services/GeneralModel";
+	import {GeneralCollection} from "../../../services/GeneralCollection";
 
 	export default {
 		name:       'TagTd',

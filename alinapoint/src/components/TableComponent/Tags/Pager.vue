@@ -24,7 +24,7 @@
 </template>
 
 <script>
-	import {GeneralCollection} from "../../../services/GeneralModel";
+	import {GeneralCollection} from "../../../services/GeneralCollection";
 
 	export default {
 		name:    'Pager',
