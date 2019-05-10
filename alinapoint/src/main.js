@@ -1,9 +1,10 @@
 import Vue        from 'vue/dist/vue.js'
+import VueRouter  from 'vue-router'
 
 import BootstrapVue from 'bootstrap-vue'
 import '../public/a.scss'
 
-import VueRouter  from 'vue-router'
+
 import App        from './App.vue'
 import FooBar     from './components/FooBar'
 import Foo        from './components/Foo'
@@ -11,8 +12,8 @@ import Bar        from './components/Bar'
 import SImplePage from "./pages/SImplePage";
 
 Vue.config.productionTip = false;
-Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
 
 
 
@@ -41,7 +42,7 @@ const router = new VueRouter({
 // 4. Create and mount the root instance.
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
-const app = new Vue({
+new Vue({
 	      el:     '#app',
 	      render: h => h(App),
 	      router: router
