@@ -585,7 +585,7 @@
 	import AnObject from "../services/AnObject";
 
 	export default {
-		name:  'SimplePage',
+		name:  'EgBootstrap',
 		props: {},
 		data() {
 			return {};

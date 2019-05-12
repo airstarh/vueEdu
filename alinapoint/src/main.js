@@ -1,5 +1,6 @@
 import Vue        from 'vue/dist/vue.js'
 import VueRouter  from 'vue-router'
+import VueCookie  from 'vue-cookie'
 
 import BootstrapVue from 'bootstrap-vue'
 import '../public/a.scss'
@@ -8,9 +9,10 @@ import '../public/a.scss'
 import App             from './App.vue'
 import AdminModel      from './pages/AdminModel'
 import AdminCollection from './pages/AdminCollection'
-import SImplePage      from "./pages/SImplePage";
+import EgBootstrap      from "./pages/EgBootstrap";
 
 Vue.config.productionTip = false;
+Vue.use(VueCookie);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
@@ -28,7 +30,8 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 // keep it simple for now.
 const router = new VueRouter({
 	routes: [
-		{path: '/Simple_Page', component: SImplePage},
+		{path: '/', component: EgBootstrap},
+		{path: '/egBootstrap', component: EgBootstrap},
 		{path: '/adminmodel', component: AdminModel},
 		{path: '/admincollection', component: AdminCollection},
 		{path: '/admincollection/:collectionName', component: AdminCollection},

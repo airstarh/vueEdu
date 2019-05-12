@@ -10,7 +10,7 @@
 				<b-navbar-nav>
 					<b-nav-item href="#">Link</b-nav-item>
 					<b-nav-item href="#" disabled>Disabled</b-nav-item>
-					<b-nav-item to="/Simple_Page">Simple Page</b-nav-item>
+					<b-nav-item to="/egBootstrap">EG:Bootstrap</b-nav-item>
 					<b-nav-item to="/admincollection">Edit Collection</b-nav-item>
 					<b-nav-item to="/adminmodel">Edit Model</b-nav-item>
 					<b-nav-item to="/rawcomponent">RawComponent</b-nav-item>
