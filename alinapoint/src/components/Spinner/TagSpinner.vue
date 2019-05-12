@@ -7,9 +7,7 @@
 	     @click="()=>{objSpinner.isOn = !objSpinner.isOn}"
 	>
 		<div id="spinner-image-container">
-			<img src="../../assets/spinner.gif" alt=""
-			     width="150"
-			>
+			<b-spinner label="Loading..."></b-spinner>
 		</div>
 	</div>
 </template>

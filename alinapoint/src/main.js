@@ -6,7 +6,6 @@ import '../public/a.scss'
 
 
 import App        from './App.vue'
-import FooBar     from './components/FooBar'
 import Foo        from './components/Foo'
 import Bar        from './components/Bar'
 import SImplePage from "./pages/SImplePage";
@@ -30,7 +29,6 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 const router = new VueRouter({
 	routes: [
 		{path: '/Simple_Page', component: SImplePage},
-		{path: '/foobar', component: FooBar},
 		{path: '/foo', component: Foo},
 		{path: '/bar', component: Bar},
 		{path: '/bar/:collectionName', component: Bar},
