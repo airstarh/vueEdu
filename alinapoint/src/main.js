@@ -6,8 +6,8 @@ import '../public/a.scss'
 
 
 import App        from './App.vue'
-import Foo        from './components/Foo'
-import Bar        from './components/Bar'
+import Foo        from './pages/Foo'
+import Bar        from './pages/Bar'
 import SImplePage from "./pages/SImplePage";
 
 Vue.config.productionTip = false;

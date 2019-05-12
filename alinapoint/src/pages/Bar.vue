@@ -27,9 +27,9 @@
 
 <script>
 	import {GeneralCollection} from "../services/GeneralCollection";
-	import TagTable            from "./TableComponent/Tags/TagTable.vue"
-	import Pager               from "./TableComponent/Tags/Pager.vue"
-	import StorageStates       from "./TableComponent/DataProviders/StorageStates";
+	import TagTable            from "../components/TableComponent/Tags/TagTable.vue"
+	import Pager               from "../components/TableComponent/Tags/Pager.vue"
+	import StorageStates       from "../components/TableComponent/DataProviders/StorageStates";
 
 	export default {
 		data() {
