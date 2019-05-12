@@ -22,6 +22,7 @@
 	import {GeneralModel} from "../services/GeneralModel";
 
 	export default {
+		name:  'AdminModel',
 		data() {
 			return {
 				model: {},

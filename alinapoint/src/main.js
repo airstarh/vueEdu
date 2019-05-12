@@ -5,10 +5,10 @@ import BootstrapVue from 'bootstrap-vue'
 import '../public/a.scss'
 
 
-import App        from './App.vue'
-import Foo        from './pages/Foo'
-import Bar        from './pages/Bar'
-import SImplePage from "./pages/SImplePage";
+import App             from './App.vue'
+import AdminModel      from './pages/AdminModel'
+import AdminCollection from './pages/AdminCollection'
+import SImplePage      from "./pages/SImplePage";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
@@ -29,9 +29,9 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 const router = new VueRouter({
 	routes: [
 		{path: '/Simple_Page', component: SImplePage},
-		{path: '/foo', component: Foo},
-		{path: '/bar', component: Bar},
-		{path: '/bar/:collectionName', component: Bar},
+		{path: '/adminmodel', component: AdminModel},
+		{path: '/admincollection', component: AdminCollection},
+		{path: '/admincollection/:collectionName', component: AdminCollection},
 		{path: '/rawcomponent/:someString', component: RawComponent},
 		{path: '/rawcomponent/*', component: RawComponent}
 	] // short for `routes: routes`

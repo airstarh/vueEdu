@@ -32,6 +32,7 @@
 	import StorageStates       from "../components/TableComponent/DataProviders/StorageStates";
 
 	export default {
+		name:  'AdminCollection',
 		data() {
 			return {
 				collectionTableName: 'user',
