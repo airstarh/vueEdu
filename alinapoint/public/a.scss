@@ -21,43 +21,32 @@ body {
 #body-container {
   position: relative;
   padding: 0;
-  border: orange solid 2px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: left;
-  color: #2c3e50;
   height: 100%;
   overflow: scroll;
+
+  border: orange solid 2px;
 }
 
 button {
-  padding: 2mm;
+  padding: 1mm;
 }
 
-a:hover,
 input:focus,
 select:focus,
 textarea:focus {
-  background-color: aqua;
+  background-color: $base-background;
 }
 /*endregion Common things */
 
 /*region Router*/
-.router-menu-links {
-  margin: 5mm;
-}
 
-.router-menu-links a {
-  padding: 2mm;
-  background-color: #ebebeb;
+.navbar-nav .nav-link.router-link-exact-active {
+  background-color: #919191;
+  color: #000;
 }
-
-.router-menu-links a.router-link-active {
-  color: #fff;
-  background-color: #000;
-}
-
 /*endregion Router*/
 
 /*region Data Table*/

@@ -10,6 +10,12 @@
 				<b-navbar-nav>
 					<b-nav-item href="#">Link</b-nav-item>
 					<b-nav-item href="#" disabled>Disabled</b-nav-item>
+					<b-nav-item to="/Simple_Page">Simple Page</b-nav-item>
+					<b-nav-item to="/foo">Foo</b-nav-item>
+					<b-nav-item to="/bar">Bar</b-nav-item>
+					<b-nav-item to="/foobar">FooBar</b-nav-item>
+					<b-nav-item to="/rawcomponent/Привет, мир!">RawComponent + Param</b-nav-item>
+					<b-nav-item to="/rawcomponent">RawComponent</b-nav-item>
 				</b-navbar-nav>
 
 				<!-- Right aligned nav items -->
