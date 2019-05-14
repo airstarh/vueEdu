@@ -1,6 +1,8 @@
 import Vue        from 'vue/dist/vue.js'
 import VueRouter  from 'vue-router'
-import VueCookie  from 'vue-cookie'
+import VueCookies  from 'vue-cookies'
+
+import SuiVue from 'semantic-ui-vue';
 
 import BootstrapVue from 'bootstrap-vue'
 import '../public/a.scss'
@@ -9,14 +11,15 @@ import '../public/a.scss'
 import App             from './App.vue'
 import AdminModel      from './pages/AdminModel'
 import AdminCollection from './pages/AdminCollection'
-import EgBootstrap      from "./pages/EgBootstrap";
+import EgBootstrap     from "./pages/EgBootstrap";
+import HelloWorld      from "./pages/HelloWorld";
 
 Vue.config.productionTip = false;
-Vue.use(VueCookie);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-
-
+Vue.use(SuiVue);
+Vue.use(VueCookies);
+VueCookies.config('7d');
 
 // 0. If using a module system (e.g. via vue-cli), import Vue and VueRouter
 // and then call `Vue.use(VueRouter)`.
@@ -30,6 +33,7 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 // keep it simple for now.
 const router = new VueRouter({
 	routes: [
+		{path: '/hw', component: HelloWorld},
 		{path: '/', component: EgBootstrap},
 		{path: '/egBootstrap', component: EgBootstrap},
 		{path: '/adminmodel', component: AdminModel},

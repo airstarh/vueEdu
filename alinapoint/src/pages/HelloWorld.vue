@@ -11,6 +11,11 @@
 				<input type="text" v-model="AnObject.prop2">
 			</label>
 		</div>
+
+		<b-list-group>
+			<b-list-group-item variant="dark">{{AnObject.prop1}}</b-list-group-item>
+			<b-list-group-item variant="dark">{{AnObject.prop2}}</b-list-group-item>
+		</b-list-group>
 	</div>
 </template>
 
@@ -19,15 +24,35 @@
 	import AnObject from "../services/AnObject";
 
 	export default {
-		name:  'HelloWorld',
-		props: {
+		name:    'HelloWorld',
+		props:   {
 			hwMessage: String,
 		},
 		data() {
 			return {
 				AnObject: AnObject
 			};
+		},
+		mounted() {
+			this.logState();
+		},
+		beforeUpdate() {
+			this.logState();
+		},
+		methods: {
+			logState() {
+				let milliseconds = (new Date).getTime();
+				// COOKIES
+				this.$cookies.set('AlinaClientlySet', milliseconds);
+				let AlinaClientlySet = this.$cookies.get('AlinaClientlySet');
+				console.log("COOKIES ++++++++++");
+				console.log(AlinaClientlySet);
 
+				// LOCAL STORAGE
+				localStorage.AlinaClientlySet = milliseconds;
+				console.log("LOCAL STORAGE ++++++++++");
+				console.log(localStorage.AlinaClientlySet);
+			}
 		}
 	}
 </script>
@@ -36,10 +61,6 @@
 <style scoped>
 	.hello {
 		background-color: darkgray;
-	}
-
-	h3 {
-		margin: 40px 0 0;
 	}
 
 	ul {

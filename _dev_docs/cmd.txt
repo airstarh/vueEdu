@@ -32,3 +32,10 @@ npm i vue bootstrap-vue bootstrap
 npm install --save-dev node-sass sass-loader
 // cookie
 npm install vue-cookie --save
+// https://semantic-ui-vue.github.io/#/
+npm install semantic-ui-vue --save
+npm install semantic-ui-css --save
+
+--- !!!: deleted row::: alinapoint/package.json
+"vue-cookie": "^1.1.4",
+

@@ -1,4 +1,4 @@
-import {Ajax}        from "./ajax";
+import {Ajax}        from "./Ajax";
 import UtilsArray    from "../Utils/UtilsArray";
 import UtilsData     from "../Utils/UtilsData";
 import StorageStates from "../components/TableComponent/DataProviders/StorageStates";
@@ -6,7 +6,6 @@ import UtilsObject   from "../Utils/UtilsObject";
 
 export class GeneralModel extends Ajax {
 	dataType           = 'model';
-	url                = 'http://alinazero:8080/alinaRestAccept';
 	tableName          = 'XXX';
 	id                 = null;
 	pkName             = 'id';

@@ -1,7 +1,10 @@
 export class Ajax {
 	options     = {};
 	//url         = 'http://alinazero/alinaRestAccept?cmd=model&m=user&ps=2&p=1';
-	url         = 'http://alinazero/alinaRestAccept';
+	urlProtocol = 'http://';
+	urlDomain   = 'alinazero';
+	urlPort     = ':8080';
+	urlPath     = '/alinaRestAccept';
 	headers     = {
 		"Content-Type": "application/json; charset=utf-8",
 		// "Content-Type": "application/x-www-form-urlencoded",
@@ -16,13 +19,13 @@ export class Ajax {
 
 	constructor() {}
 
-	static newInst(options = {}){
+	static newInst(options = {}) {
 		const _this = new this();
 		_this.setOptions(options);
 		return _this;
 	}
 
-	setOptions(options = {}){
+	setOptions(options = {}) {
 		this.options = options;
 		for (let p in options) {
 			if (options.hasOwnProperty(p)) {
@@ -101,7 +104,12 @@ export class Ajax {
 	 * @return String
 	 */
 	urlBuild() {
-		const url = new URL(this.url);
+		const urlProtocol = this.urlProtocol;
+		const urlDomain   = this.urlDomain;
+		const urlPort     = this.urlPort;
+		const urlPath     = this.urlPath;
+		const urlFull     = `${urlProtocol}${urlDomain}${urlPort}${urlPath}`;
+		const url         = new URL(urlFull);
 		Object.keys(this.getParams).forEach(key => url.searchParams.append(key, this.getParams[key]));
 		return url.toString();
 	}
