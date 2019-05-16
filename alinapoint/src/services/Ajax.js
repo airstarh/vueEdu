@@ -1,6 +1,9 @@
+import UtilsData from "../Utils/UtilsData";
+
 export class Ajax {
 	options     = {};
 	//url         = 'http://alinazero/alinaRestAccept?cmd=model&m=user&ps=2&p=1';
+	url         = '';
 	urlProtocol = 'http://';
 	urlDomain   = 'alinazero';
 	urlPort     = ':8080';
@@ -19,6 +22,9 @@ export class Ajax {
 
 	constructor() {}
 
+	/**
+	 * @return Ajax instance
+	 */
 	static newInst(options = {}) {
 		const _this = new this();
 		_this.setOptions(options);
@@ -104,12 +110,17 @@ export class Ajax {
 	 * @return String
 	 */
 	urlBuild() {
-		const urlProtocol = this.urlProtocol;
-		const urlDomain   = this.urlDomain;
-		const urlPort     = this.urlPort;
-		const urlPath     = this.urlPath;
-		const urlFull     = `${urlProtocol}${urlDomain}${urlPort}${urlPath}`;
-		const url         = new URL(urlFull);
+		let urlFull = '';
+		if (!UtilsData.empty(this.url)) {
+			urlFull = this.url;
+		} else {
+			const urlProtocol = this.urlProtocol;
+			const urlDomain   = this.urlDomain;
+			const urlPort     = this.urlPort;
+			const urlPath     = this.urlPath;
+			urlFull           = `${urlProtocol}${urlDomain}${urlPort}${urlPath}`;
+		}
+		const url = new URL(urlFull);
 		Object.keys(this.getParams).forEach(key => url.searchParams.append(key, this.getParams[key]));
 		return url.toString();
 	}

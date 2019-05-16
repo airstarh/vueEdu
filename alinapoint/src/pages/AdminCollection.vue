@@ -32,7 +32,7 @@
 	import StorageStates       from "../components/TableComponent/DataProviders/StorageStates";
 
 	export default {
-		name:  'AdminCollection',
+		name:       'AdminCollection',
 		data() {
 			return {
 				collectionTableName: 'user',
@@ -66,7 +66,13 @@
 			},
 
 			getCollection() {
-				this.collection = GeneralCollection.newInst([], {tableName: this.collectionTableName,});
+				this.collection = GeneralCollection.newInst([], {
+					tableName: this.collectionTableName,
+					getParams: {
+						cmd: 'collection',
+						m:   this.collectionTableName,
+					}
+				});
 				this.collection.ajaxGet();
 			},
 

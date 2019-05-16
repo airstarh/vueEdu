@@ -4,6 +4,10 @@ import UtilsData     from "../Utils/UtilsData";
 import StorageStates from "../components/TableComponent/DataProviders/StorageStates";
 import UtilsObject   from "../Utils/UtilsObject";
 
+/**
+ * @class GeneralModel
+ * @extends Ajax
+ **/
 export class GeneralModel extends Ajax {
 	dataType           = 'model';
 	tableName          = 'XXX';
@@ -13,6 +17,9 @@ export class GeneralModel extends Ajax {
 	lastJsonedResponse = {};
 	arrFieldsOrder     = [];
 
+	/**
+	 * @return GeneralModel instance
+	 */
 	static newInst(attributes = {}, options = {}) {
 		const _this = new this();
 		_this.setOptions(options);
@@ -31,13 +38,7 @@ export class GeneralModel extends Ajax {
 			gpFromStorage,
 			gpNewest
 		);
-
-		//ToDo: Not the best approach.
-		this.getParams.cmd = this.dataType;
-		this.getParams.m   = this.tableName;
-
 		this.saveGetParams();
-
 		return this;
 	}
 

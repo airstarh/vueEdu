@@ -1,6 +1,10 @@
 import UtilsData      from "../Utils/UtilsData";
 import {GeneralModel} from "./GeneralModel";
 
+/**
+ * @class GeneralCollection
+ * @extends GeneralModel
+ **/
 export class GeneralCollection extends GeneralModel {
 	dataType        = 'collection';
 	flagSignal      = true;
@@ -19,8 +23,11 @@ export class GeneralCollection extends GeneralModel {
 	sortName = [];
 	sortAsc  = [];
 
-	/**endregion Sort*/
+	//endregion Sort
 
+	/**
+	 * @return GeneralCollection instance
+	 **/
 	static newInst(models = [], options = {}) {
 		const _this = new this();
 		_this.setOptions(options);

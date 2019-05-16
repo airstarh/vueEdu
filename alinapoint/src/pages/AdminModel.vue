@@ -22,7 +22,7 @@
 	import {GeneralModel} from "../services/GeneralModel";
 
 	export default {
-		name:  'AdminModel',
+		name: 'AdminModel',
 		data() {
 			return {
 				model: {},
@@ -43,6 +43,7 @@
 						tableName: 'user',
 						getParams: {
 							cmd: 'model',
+							m:   this.tableName,
 							mId: 3,
 						}
 					}
