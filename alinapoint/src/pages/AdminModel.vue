@@ -1,6 +1,6 @@
 <template>
 	<div class="hello">
-		<h1>Foo</h1>
+		<h1>Admin Model</h1>
 		<button @click="log()">LOG</button>
 		<table class="data-table">
 			<tr v-for="(fName, i) in model.arrFieldsOrder"
@@ -25,6 +25,7 @@
 		name: 'AdminModel',
 		data() {
 			return {
+				tableName: 'user',
 				model: {},
 			}
 		},
@@ -40,7 +41,7 @@
 
 			getModel() {
 				this.model = GeneralModel.newInst({}, {
-						tableName: 'user',
+						tableName: this.tableName,
 						getParams: {
 							cmd: 'model',
 							m:   this.tableName,

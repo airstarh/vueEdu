@@ -1,7 +1,7 @@
 import {Ajax}        from "./Ajax";
 import UtilsArray    from "../Utils/UtilsArray";
 import UtilsData     from "../Utils/UtilsData";
-import StorageStates from "../components/TableComponent/DataProviders/StorageStates";
+import StorageStates from "./StorageStates";
 import UtilsObject   from "../Utils/UtilsObject";
 
 /**

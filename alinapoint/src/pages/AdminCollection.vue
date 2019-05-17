@@ -1,11 +1,11 @@
 <template>
 	<div class="hello">
-		<h1>Collection viewer</h1>
+		<h1>Admin Collection</h1>
 		<div class="">
-			<router-link to="/bar/user">user</router-link>
+			<router-link to="/admincollection/user">user</router-link>
 		</div>
 		<div class="">
-			<router-link to="/bar/article">article</router-link>
+			<router-link to="/admincollection/article">article</router-link>
 		</div>
 		<button @click="log()">LOG</button>
 		<Pager
@@ -29,7 +29,7 @@
 	import {GeneralCollection} from "../services/GeneralCollection";
 	import TagTable            from "../components/TableComponent/Tags/TagTable.vue"
 	import Pager               from "../components/TableComponent/Tags/Pager.vue"
-	import StorageStates       from "../components/TableComponent/DataProviders/StorageStates";
+	import StorageStates       from "../services/StorageStates";
 
 	export default {
 		name:       'AdminCollection',

@@ -1,5 +1,5 @@
-import UtilsObject from "../../../Utils/UtilsObject";
-import UtilsData   from "../../../Utils/UtilsData";
+import UtilsObject from "../Utils/UtilsObject";
+import UtilsData   from "../Utils/UtilsData";
 
 const StorageStates = {
 	racks: {},
