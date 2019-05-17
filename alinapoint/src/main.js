@@ -2,9 +2,8 @@ import Vue        from 'vue/dist/vue.js'
 import VueRouter  from 'vue-router'
 import VueCookies  from 'vue-cookies'
 
-import SuiVue from 'semantic-ui-vue';
-
 import BootstrapVue from 'bootstrap-vue'
+import KeenUI from 'keen-ui';
 import '../public/a.scss'
 
 
@@ -17,7 +16,7 @@ import HelloWorld      from "./pages/HelloWorld";
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-Vue.use(SuiVue);
+Vue.use(KeenUI);
 Vue.use(VueCookies);
 VueCookies.config('7d');
 

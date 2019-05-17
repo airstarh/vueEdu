@@ -16,6 +16,17 @@
 			<b-list-group-item variant="dark">{{AnObject.prop1}}</b-list-group-item>
 			<b-list-group-item variant="dark">{{AnObject.prop2}}</b-list-group-item>
 		</b-list-group>
+
+		<div>
+			<ui-datepicker
+					icon="eventpacks"
+					orientation="landscape"
+					picker-type="modal"
+					placeholder="Select a date"
+					v-model="picker8"
+			>Your Birthday</ui-datepicker>
+		</div>
+
 	</div>
 </template>
 
@@ -29,10 +40,33 @@
 			hwMessage: String,
 		},
 		data() {
+
+			const twoWeeksFromNow = new Date();
+			twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
 			return {
+				picker1: null,
+				picker2: null,
+				picker3: null,
+				picker4: new Date((new Date()).getFullYear(), 11, 25),
+				picker401: '2019-01-08',
+				picker5: null,
+				picker6: null,
+				picker7: null,
+				picker8: null,
+				picker801: null,
+				picker9: null,
+				picker10: null,
+				picker10Min: new Date(),
+				picker10Max: twoWeeksFromNow,
+				picker11: null,
+				picker12: null,
+				picker13: null,
+				picker14: null,
+				picker15: new Date(),
 				AnObject: AnObject
 			};
 		},
+
 		mounted() {
 			this.logState();
 		},
@@ -61,6 +95,7 @@
 <style scoped>
 	.hello {
 		background-color: darkgray;
+		padding: 25px;
 	}
 
 	ul {
