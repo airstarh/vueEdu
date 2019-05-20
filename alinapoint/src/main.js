@@ -12,6 +12,7 @@ import AdminModel      from './pages/AdminModel'
 import AdminCollection from './pages/AdminCollection'
 import EgBootstrap     from "./pages/EgBootstrap";
 import HelloWorld      from "./pages/HelloWorld";
+import Login           from "./pages/authentication/Login";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
@@ -32,6 +33,9 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 // keep it simple for now.
 const router = new VueRouter({
 	routes: [
+		//region Auth
+		{path: '/login', component: Login},
+		//endregion Auth
 		{path: '/hw', component: HelloWorld},
 		{path: '/', component: EgBootstrap},
 		{path: '/egBootstrap', component: EgBootstrap},

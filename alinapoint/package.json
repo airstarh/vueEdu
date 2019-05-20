@@ -18,7 +18,8 @@
     "vue-cookies": "^1.5.13",
     "vue-material-design-icons": "^3.2.0",
     "vue-mc": "^0.5.0",
-    "vue-router": "^3.0.6"
+    "vue-router": "^3.0.6",
+    "autosize": "latest"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

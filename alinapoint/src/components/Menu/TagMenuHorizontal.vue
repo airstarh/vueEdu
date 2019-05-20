@@ -32,6 +32,7 @@
 						<b-dropdown-item href="#">FA</b-dropdown-item>
 					</b-nav-item-dropdown>
 
+					<b-nav-item to="/login">Log in</b-nav-item>
 					<b-nav-item-dropdown right>
 						<!-- Using 'button-content' slot -->
 						<template slot="button-content"><em>User</em></template>

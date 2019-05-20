@@ -87,6 +87,7 @@
 				} else {
 					this.refCollection.arrFieldsOrderSetLater(curIndex);
 				}
+				this.refCollection.arrFieldsOrderSet(this.refCollection.arrFieldsOrder, true);
 				//this.$set(this.refCollection.flagSignal, !this.refCollection.flagSignal);
 				this.refCollection.flagSignal = !this.refCollection.flagSignal;
 
