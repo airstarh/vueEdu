@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "autosize": "latest",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.19",
     "keen-ui": "^1.1.2",
@@ -18,8 +19,7 @@
     "vue-cookies": "^1.5.13",
     "vue-material-design-icons": "^3.2.0",
     "vue-mc": "^0.5.0",
-    "vue-router": "^3.0.6",
-    "autosize": "latest"
+    "vue-router": "^3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
