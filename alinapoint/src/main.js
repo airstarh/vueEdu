@@ -13,7 +13,8 @@ import AdminCollection from './pages/AdminCollection'
 import EgBootstrap     from "./pages/EgBootstrap";
 import HelloWorld      from "./pages/HelloWorld";
 import Login           from "./pages/authentication/Login";
-
+import Register        from "./pages/authentication/Register";
+import Profile        from "./pages/authentication/Profile";
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -32,9 +33,13 @@ const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
+	//Убрал хеширование из url (было /#/url, а стало /url)
+	mode: 'history',
 	routes: [
 		//region Auth
 		{path: '/login', component: Login},
+		{path:'/profile',component:Profile},
+		{path:'/register',component:Register},
 		//endregion Auth
 		{path: '/hw', component: HelloWorld},
 		{path: '/', component: EgBootstrap},
