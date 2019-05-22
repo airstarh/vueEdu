@@ -1,66 +1,74 @@
-import Vue        from 'vue/dist/vue.js'
-import VueRouter  from 'vue-router'
-import VueCookies  from 'vue-cookies'
+import Vue from "vue";
+import createLogger from 'vuex/dist/logger';
+import VueRouter from "vue-router";
+import VueCookies from "vue-cookies";
+import Vuex from "vuex";
+//import store from "./store/index";
+import BootstrapVue from "bootstrap-vue";
+import KeenUI from "keen-ui";
+import "../public/a.scss";
 
-import BootstrapVue from 'bootstrap-vue'
-import KeenUI from 'keen-ui';
-import '../public/a.scss'
+import global from './store/modules/global.module';
+import registration from './store/modules/registration.module';
+import authorization from './store/modules/authorization.module';
+import profile from "./store/modules/profile.module";
 
+import App from "./App.vue";
+import Login from "./pages/authentication/Login";
+import Register from "./pages/authentication/Register";
+import Profile from "./pages/authentication/Profile";
 
-import App             from './App.vue'
-import AdminModel      from './pages/AdminModel'
-import AdminCollection from './pages/AdminCollection'
-import EgBootstrap     from "./pages/EgBootstrap";
-import HelloWorld      from "./pages/HelloWorld";
-import Login           from "./pages/authentication/Login";
-import Register        from "./pages/authentication/Register";
-import Profile        from "./pages/authentication/Profile";
 Vue.config.productionTip = false;
+Vue.config.devtools = true
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(KeenUI);
 Vue.use(VueCookies);
-VueCookies.config('7d');
+VueCookies.config("7d");
+Vue.use(Vuex);
 
-// 0. If using a module system (e.g. via vue-cli), import Vue and VueRouter
-// and then call `Vue.use(VueRouter)`.
+const debug = process.env.NODE_ENV !== 'production'
+ const store = new Vuex.Store({
+  modules: {
+    global,
+    registration,
+    authorization,
+    profile
+  },
+ plugins: [createLogger()],
+  strict: debug,
+})
 
-// 1. Define route components.
-// These can be imported from other files
-const RawComponent = {template: '<h1>RC: {{ $route.params.someString }}</h1>'};
+// const ifNotAuthenticated = (to, from, next) => {
+//   if (!store.getters.isAuthenticated) {
+//     next();
+//     return;
+//   }
+//   next("/profile");
+// };
 
-// 3. Create the router instance and pass the `routes` option
-// You can pass in additional options here, but let's
-// keep it simple for now.
-const router = new VueRouter({
-	//Убрал хеширование из url (было /#/url, а стало /url)
-	mode: 'history',
-	routes: [
-		//region Auth
-		{path: '/login', component: Login},
-		{path:'/profile',component:Profile},
-		{path:'/register',component:Register},
-		//endregion Auth
-		{path: '/hw', component: HelloWorld},
-		{path: '/', component: EgBootstrap},
-		{path: '/egBootstrap', component: EgBootstrap},
-		{path: '/adminmodel', component: AdminModel},
-		{path: '/admincollection', component: AdminCollection},
-		{path: '/admincollection/:collectionName', component: AdminCollection},
-		{path: '/rawcomponent/:someString', component: RawComponent},
-		{path: '/rawcomponent/*', component: RawComponent}
-	] // short for `routes: routes`
+const ifAuthenticated = (to, from, next) => {
+	console.log(store)
+	console.log(store.getters['authorization/isAuthenticated'])
+  if (store.getters['authorization/isAuthenticated']) {
+    next();
+    return;
+  }
+  next("/login");
+};
+export const router = new VueRouter({
+  mode: "history",
+  //base:"/",
+  routes: [
+  { path: "/login", component: Login, },
+  { path: "/profile", component: Profile,beforeEnter: ifAuthenticated  },
+	{ path: "/register", component: Register },
+	{ path: '*', redirect: '/login' }
+  ]
 });
 
-// 4. Create and mount the root instance.
-// Make sure to inject the router with the router option to make the
-// whole app router-aware.
 new Vue({
-	      el:     '#app',
-	      render: h => h(App),
-	      router: router
-      })
-      //	.$mount('#app')
-;
-
-// Now the app has started!
+  store, 
+  router,
+  render: h => h(App),
+}).$mount("#app");

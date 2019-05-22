@@ -55,7 +55,12 @@ export default {
 
   methods: {
     send: function() {
-      console.log("send");
+      this.$store.dispatch("registration/sendRegistration", {
+        name: this.name,
+        password: this.password,
+        email: this.email,
+        sex: this.sex
+      });
     }
   }
 };

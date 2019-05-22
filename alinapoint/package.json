@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "autosize": "latest",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.19",
     "keen-ui": "^1.1.2",
@@ -19,7 +20,8 @@
     "vue-cookies": "^1.5.13",
     "vue-material-design-icons": "^3.2.0",
     "vue-mc": "^0.5.0",
-    "vue-router": "^3.0.6"
+    "vue-router": "^3.0.6",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
@@ -28,6 +30,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "vue-cli-plugin-bootstrap-vue": "^0.4.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

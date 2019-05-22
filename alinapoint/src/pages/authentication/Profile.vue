@@ -12,7 +12,6 @@
             <ui-button raised :size="size" v-on:click="toggleEdit()" type="secondary">Редактировать</ui-button>
           </b-col>
         </b-row>
-
         <div>
           <ui-textbox
             :disabled="edit"
@@ -26,9 +25,9 @@
         <div>
           <ui-textbox
             :disabled="edit"
-            label="Пароль"
-            v-model="password"
-            icon="security"
+            label="Почта"
+            v-model="email"
+            icon="email"
             type="text"
             :floatingLabel="true"
           ></ui-textbox>
@@ -36,9 +35,8 @@
         <div>
           <ui-textbox
             :disabled="edit"
-            label="Почта"
-            v-model="email"
-            icon="email"
+            label="О себе"
+            v-model="experience"
             type="text"
             :floatingLabel="true"
           ></ui-textbox>
@@ -59,22 +57,37 @@
     </b-row>
   </b-container>
 </template>
-
 <script>
-import ConfigApi from "../../configs/ConfigApi";
 const sexArray = ["male", "female"];
 export default {
   name: "Profile",
-  props: {},
   data: function() {
     return {
       name: "",
-      password: "",
       email: "",
       sex: "",
       edit: true,
       sexArray
     };
+  },
+  created() {
+    this.name = this.$store.state.authorization.user.name;
+    this.email = this.$store.state.authorization.user.name;
+    this.sex = this.$store.state.authorization.user.name;
+    this.experience = this.$store.state.authorization.experience;
+  },
+  mounted() {
+    this.$store.subscribe((mutation, state) => {
+      switch (mutation.type) {
+        case "authorization/checkAuthorizationSuccess":
+          const user = state.authorization.user;
+          this.name = user.name;
+          this.email = user.email;
+          this.sex = user.sex;
+          this.experience = user.experience;
+          break;
+      }
+    });
   },
 
   methods: {
@@ -82,7 +95,12 @@ export default {
       this.edit = !this.edit;
     },
     save: function() {
-      console.log("сохранено");
+      this.$store.dispatch("profile/editProfile", {
+        name: this.name,
+        email: this.email,
+        sex: this.sex,
+        experience: this.experience
+      });
     }
   }
 };
