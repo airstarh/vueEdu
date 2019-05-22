@@ -4,6 +4,7 @@ import UtilsData   from "../Utils/UtilsData";
 const StorageStates = {
 	//region Core
 	racks: {},
+	//ToDo: AdminCollection Sort does not work properly if isLsActivated = false... Why?
 	isLsActivated: true,
 
 	s(modelName, path = '', value) {
