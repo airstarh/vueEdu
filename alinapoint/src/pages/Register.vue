@@ -3,7 +3,7 @@
     <b-row class="justify-content-md-center">
       <b-col cols="12" md="5">
         <h2>
-          <b-badge>Register</b-badge>&nbsp;
+          <b-badge>Регистрация</b-badge>&nbsp;
         </h2>
         <div>
           <ui-textbox
@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import ConfigApi from "../../configs/ConfigApi";
 const sexArray = ["male", "female"];
 export default {
   name: "Profile",

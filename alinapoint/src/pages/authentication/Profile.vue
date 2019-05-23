@@ -5,7 +5,7 @@
         <b-row>
           <b-col>
             <h2>
-              <b-badge>Profile</b-badge>&nbsp;
+              <b-badge>Профиль</b-badge>&nbsp;
             </h2>
           </b-col>
           <b-col>
@@ -51,7 +51,13 @@
           ></ui-select>
         </div>
         <div>
-          <ui-button raised :size="size" v-on:click="save()" type="secondary">Сохранить</ui-button>
+          <ui-button
+            :disabled="edit"
+            raised
+            :size="size"
+            v-on:click="save()"
+            type="secondary"
+          >Сохранить</ui-button>
         </div>
       </b-col>
     </b-row>

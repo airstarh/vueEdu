@@ -61,12 +61,16 @@ const mutations = {
     state.token = token;
   },
   loginFailed() {},
-  logout() {},
+  logout() {
+    state.token = null
+  },
   checkAuthorizationStart() {},
   checkAuthorizationSuccess(state, { user }) {
     state.user = user;
   },
-  checkAuthorizationFailed() {}
+  checkAuthorizationFailed() {
+    state.token = null
+  }
 };
 
 export default {

@@ -6,7 +6,7 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav v-if="isAuthenticated.length>0">
+        <b-navbar-nav v-if="isAuthenticated">
           <b-button v-on:click="logout()">Выход</b-button>
           <b-nav-item to="/profile">Профиль</b-nav-item>
         </b-navbar-nav>

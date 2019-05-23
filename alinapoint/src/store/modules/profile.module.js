@@ -15,10 +15,16 @@ const actions = {
     commit("preloaderOn");
     console.log(profile);
     axios
-      .put("http://provencal.ru:8120/user", {
+      .post("http://provencal.ru:8120/user/", {
         token: localStorage.getItem("token") || null,
         data: { ...profile }
-      })
+      }, {
+        // headers: {
+        //     "Accept": "application/json",
+        //     "Content-type": "application/json",
+        // }
+    }
+    )
       .then(() => {
         commit("editProfileSuccess", {});
         commit("checkAuthorization");

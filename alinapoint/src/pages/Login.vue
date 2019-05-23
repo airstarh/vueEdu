@@ -3,7 +3,7 @@
     <b-row class="justify-content-md-center">
       <b-col cols="12" md="5">
         <h2>
-          <b-badge>Login</b-badge>&nbsp;
+          <b-badge>Вход</b-badge>&nbsp;
         </h2>
         <div>
           <ui-textbox
