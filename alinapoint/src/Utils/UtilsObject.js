@@ -1,5 +1,7 @@
 //import UtilsData from "./UtilsData";
 
+import UtilsData from "./UtilsData";
+
 export default class UtilsObject {
 
 	//region Get Set by path.
@@ -12,6 +14,11 @@ export default class UtilsObject {
 		let ref       = o;
 		for (let i = 0; i <= len; i++) {
 			let prop = pathArr[i];
+
+			if (UtilsData.isNumber(prop)) {
+				prop = parseInt(prop);
+			}
+
 			if (typeof ref[prop] !== 'undefined') {
 				ref = ref[prop];
 			} else {
@@ -26,15 +33,32 @@ export default class UtilsObject {
 		const len     = pathArr.length - 1;
 		let ref       = o;
 		for (let i = 0; i < len; i++) {
-			let prop = pathArr[i];
+			let prop       = pathArr[i];
+			const nextProp = pathArr[i + 1];
+
+			if (UtilsData.isNumber(prop)) {
+				prop = parseInt(prop);
+			}
+
 			if (prop in ref) {
 				ref = ref[prop];
 			} else {
-				ref[prop] = {};
-				ref       = ref[prop];
+				if (UtilsData.isNumber(nextProp)) {
+					ref[prop] = [];
+				} else {
+					ref[prop] = {};
+				}
+				ref = ref[prop];
 			}
 		}
-		ref[pathArr[len]] = value;
+
+		let theLastKey = pathArr[len];
+		if (UtilsData.isNumber(theLastKey)) {
+			theLastKey = parseInt(theLastKey);
+
+		}
+
+		ref[theLastKey] = value;
 		return value;
 	}
 
